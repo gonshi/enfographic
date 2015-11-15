@@ -1,0 +1,411 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+/* HTML5 display definitions
+   ========================================================================== */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav,
+section, summary {
+  display: block;
+}
+
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Resetting default margin and padding
+   ========================================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* HTML, Body, Anchor
+   ========================================================================== */
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1;
+}
+
+a {
+  outline: 0;
+}
+
+/* Paragraph
+   ========================================================================== */
+p {
+  margin-bottom: 0;
+}
+
+/* List
+   ========================================================================== */
+ol, ul {
+  list-style: none;
+}
+
+/* Table
+   ========================================================================== */
+table {
+  font-size: inherit;
+  font-family: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+/* Form
+   ========================================================================== */
+fieldset {
+  border: none;
+}
+
+input, textarea, select, label {
+  vertical-align: middle;
+}
+
+textarea {
+  overflow: auto;
+}
+
+legend {
+  display: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+/* Embedded
+   ========================================================================== */
+img {
+  vertical-align: bottom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}
+
+a img {
+  border: none;
+}
+
+object {
+  vertical-align: middle;
+  outline: none;
+}
+
+audio,
+canvas,
+video {
+  vertical-align: middle;
+}
+
+/* Other
+   ========================================================================== */
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+abbr {
+  border: none;
+  font-variant: normal;
+}
+
+q, blockquote {
+  quotes: none;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+address, caption, cite, code, dfn, var {
+  font-weight: normal;
+  font-style: normal;
+}
+
+code, pre {
+  font-family: monospace;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* clearfix */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+p {
+  -ms-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+      hyphens: auto;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
+
+body {
+  min-width: 0;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  font-family: "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: #0072ff;
+  text-decoration: none;
+}
+a:link, a:visited {
+  outline: 0;
+}
+a:hover, a:active {
+  color: #0072ff;
+  text-decoration: underline;
+}
+
+.global-header h1 {
+  font-size: 143%;
+  margin: 20px 0;
+}
+
+.global-footer .copyright {
+  margin: 20px 0;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-fixed {
+  position: fixed;
+  width: 100%;
+}
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.header_ttl {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  background-image: url(../img/index.png);
+  background-position: -284px -146px;
+  width: 162px;
+  height: 33px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+}
+
+.contents {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  background-color: #F2F2F2;
+  color: #333333;
+}
+
+.firstview .firstview_start {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  -webkit-transform: translateY(145px);
+      -ms-transform: translateY(145px);
+          transform: translateY(145px);
+  cursor: pointer;
+}
+.firstview .firstview_start:hover {
+  opacity: 0.7;
+}
+.firstview[data-id="1"] .firstview_ttl {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  background-image: url(../img/index.png);
+  background-position: 0px 0px;
+  width: 519px;
+  height: 142px;
+  margin: auto;
+  -webkit-transform: translateY(-175px);
+      -ms-transform: translateY(-175px);
+          transform: translateY(-175px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+}
+.firstview[data-id="1"] .firstview_txt {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 580px;
+  margin: auto;
+  font-size: 18px;
+  -webkit-transform: translateY(15px);
+      -ms-transform: translateY(15px);
+          transform: translateY(15px);
+}
+.firstview[data-id="1"] .firstview_start {
+  background-image: url(../img/index.png);
+  background-position: 0px -207px;
+  width: 280px;
+  height: 57px;
+}
+.firstview[data-id="2"] {
+  display: none;
+  opacity: 0;
+}
+.firstview[data-id="2"] .firstview_subttl {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 18px;
+  -webkit-transform: translateY(-155px);
+      -ms-transform: translateY(-155px);
+          transform: translateY(-155px);
+}
+.firstview[data-id="2"] .firstview_input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 540px;
+  margin: auto;
+  font-family: 'Roboto Slab', serif;
+  font-size: 80px;
+  border-bottom: 2px solid #C3C3C3;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+.firstview[data-id="2"] .firstview_input:before {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-image: url(../img/index.png);
+  background-position: -284px -207px;
+  width: 45px;
+  height: 52px;
+  content: "";
+}
+.firstview[data-id="2"] .firstview_input_inner {
+  width: 100%;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: right;
+  border: none;
+  background-color: transparent;
+  -webkit-transform: translateY(15px);
+      -ms-transform: translateY(15px);
+          transform: translateY(15px);
+}
+.firstview[data-id="2"] .firstview_input_inner:focus {
+  outline: 0;
+}
+.firstview[data-id="2"] .firstview_start {
+  background-image: url(../img/index.png);
+  background-position: 0px -146px;
+  width: 280px;
+  height: 57px;
+}
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    -webkit-filter: none !important;
+            filter: none !important;
+    -ms-filter: none !important;
+  }
+}

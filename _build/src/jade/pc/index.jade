@@ -1,0 +1,42 @@
+doctype html
+html(lang="ja")
+  head(prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml")
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title= title
+    meta(name="description", content=description)
+    meta(name="keywords", content="")
+    meta(property="og:title" content=title)
+    meta(property="og:type" content="")
+    meta(property="og:url" content="")
+    meta(property="og:image" content="")
+    meta(property="og:site_name" content="")
+    meta(property="og:description" content=description)
+    meta(property="fb:app_id" content="")
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:site" content="")
+    link(rel="shortcut icon" href="/favicon.ico")
+    link(href="css/style.css" rel="stylesheet")
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Slab:100' rel='stylesheet' type='text/css')
+    script(src="js/lib/modernizr.min.js")
+  body
+    main.contents
+      div.firstview(data-id="1")
+        h2.firstview_ttl ￥fographics
+        p.firstview_txt ￥fographics(エンフォグラフィクス)あなたの見積もりを別のものに置き換えて見積もる。新しい見積もりサービスです。
+        p.firstview_start はじめる
+      div.firstview(data-id="2")
+        p.firstview_subttl 見積もりたい見積もり金額を入力してください。
+        p.firstview_input
+          input.firstview_input_inner(type="number" value="2222")
+        p.firstview_start この金額で見積もる
+    header.header
+      h1.header_ttl ￥fographics
+      div.header_social
+    script(src="js/lib/jquery-2.1.4.min.js")
+    script(src="js/lib/velocity.min.js")
+    script(src="js/script.js")
+    //
+      script
+        include ga.js

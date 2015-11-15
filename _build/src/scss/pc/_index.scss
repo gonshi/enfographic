@@ -1,0 +1,125 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$index-estimate-name: 'index_estimate';
+$index-estimate-x: 0px;
+$index-estimate-y: 146px;
+$index-estimate-offset-x: 0px;
+$index-estimate-offset-y: -146px;
+$index-estimate-width: 280px;
+$index-estimate-height: 57px;
+$index-estimate-total-width: 519px;
+$index-estimate-total-height: 264px;
+$index-estimate-image: '../img/index.png';
+$index-estimate: (0px, 146px, 0px, -146px, 280px, 57px, 519px, 264px, '../img/index.png', 'index_estimate', );
+$index-logo-name: 'index_logo';
+$index-logo-x: 284px;
+$index-logo-y: 146px;
+$index-logo-offset-x: -284px;
+$index-logo-offset-y: -146px;
+$index-logo-width: 162px;
+$index-logo-height: 33px;
+$index-logo-total-width: 519px;
+$index-logo-total-height: 264px;
+$index-logo-image: '../img/index.png';
+$index-logo: (284px, 146px, -284px, -146px, 162px, 33px, 519px, 264px, '../img/index.png', 'index_logo', );
+$index-start-name: 'index_start';
+$index-start-x: 0px;
+$index-start-y: 207px;
+$index-start-offset-x: 0px;
+$index-start-offset-y: -207px;
+$index-start-width: 280px;
+$index-start-height: 57px;
+$index-start-total-width: 519px;
+$index-start-total-height: 264px;
+$index-start-image: '../img/index.png';
+$index-start: (0px, 207px, 0px, -207px, 280px, 57px, 519px, 264px, '../img/index.png', 'index_start', );
+$index-ttl-name: 'index_ttl';
+$index-ttl-x: 0px;
+$index-ttl-y: 0px;
+$index-ttl-offset-x: 0px;
+$index-ttl-offset-y: 0px;
+$index-ttl-width: 519px;
+$index-ttl-height: 142px;
+$index-ttl-total-width: 519px;
+$index-ttl-total-height: 264px;
+$index-ttl-image: '../img/index.png';
+$index-ttl: (0px, 0px, 0px, 0px, 519px, 142px, 519px, 264px, '../img/index.png', 'index_ttl', );
+$index-yen-name: 'index_yen';
+$index-yen-x: 284px;
+$index-yen-y: 207px;
+$index-yen-offset-x: -284px;
+$index-yen-offset-y: -207px;
+$index-yen-width: 45px;
+$index-yen-height: 52px;
+$index-yen-total-width: 519px;
+$index-yen-total-height: 264px;
+$index-yen-image: '../img/index.png';
+$index-yen: (284px, 207px, -284px, -207px, 45px, 52px, 519px, 264px, '../img/index.png', 'index_yen', );
+$index-width: 519px;
+$index-height: 264px;
+$index-image: '../img/index.png';
+$index-sprites: ($index-estimate, $index-logo, $index-start, $index-ttl, $index-yen, );
+$index: (519px, 264px, '../img/index.png', $index-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
