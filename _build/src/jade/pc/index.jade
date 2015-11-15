@@ -29,8 +29,22 @@ html(lang="ja")
       div.firstview(data-id="2")
         p.firstview_subttl 見積もりたい見積もり金額を入力してください。
         p.firstview_input
-          input.firstview_input_inner(type="number" value="2222")
+          input.firstview_input_inner(type="number" value="0")
         p.firstview_start この金額で見積もる
+      div.result
+        //
+          p.result_price 200,000
+          p.result_equal =
+        div.result_item_container.clearfix
+        div.result_item_tmpl
+          div.result_item
+            p.result_item_inner
+        //
+          div.result_formula
+            p.result_formula_price
+            p.result_formula_equal =
+            p.result_formula_amount
+            p.result_formula_unit
     header.header
       h1.header_ttl ￥fographics
       div.header_social

@@ -266,6 +266,36 @@ The `sprites` mixin generates identical output to the CSS template
 
 @include sprites($spritesheet-sprites);
 */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
 .header_ttl {
   position: absolute;
   top: 40px;
@@ -285,6 +315,9 @@ The `sprites` mixin generates identical output to the CSS template
   min-height: 650px;
   background-color: #F2F2F2;
   color: #333333;
+}
+.contents.show_result {
+  height: auto;
 }
 
 .firstview .firstview_start {
@@ -335,7 +368,7 @@ The `sprites` mixin generates identical output to the CSS template
 }
 .firstview[data-id="1"] .firstview_start {
   background-image: url(../img/index.png);
-  background-position: 0px -207px;
+  background-position: 0px -268px;
   width: 280px;
   height: 57px;
 }
@@ -373,7 +406,7 @@ The `sprites` mixin generates identical output to the CSS template
   bottom: 15px;
   left: 15px;
   background-image: url(../img/index.png);
-  background-position: -284px -207px;
+  background-position: -284px -268px;
   width: 45px;
   height: 52px;
   content: "";
@@ -394,9 +427,35 @@ The `sprites` mixin generates identical output to the CSS template
 }
 .firstview[data-id="2"] .firstview_start {
   background-image: url(../img/index.png);
-  background-position: 0px -146px;
+  background-position: 0px -207px;
   width: 280px;
   height: 57px;
+}
+
+.result[data-id="1"] .result_item_inner {
+  background-image: url(../img/item.png);
+  background-position: 0px 0px;
+  width: 73px;
+  height: 97px;
+}
+
+.result_item_container {
+  width: 1040px;
+  margin: 0 auto;
+}
+
+.result_item {
+  float: left;
+  width: 104px;
+  height: 110px;
+}
+
+.result_item_inner {
+  margin: 0 auto;
+}
+
+.result_item_tmpl {
+  display: none;
 }
 
 @media print {

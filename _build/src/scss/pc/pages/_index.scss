@@ -1,8 +1,9 @@
-// ==========================================================================
+// ========================================
 //   index
-// ==========================================================================
+// ========================================
 
 @import "../index.scss";
+@import "../item.scss";
 
 .header_ttl{
     @include absolute(40px, '', '', 60px);
@@ -16,7 +17,15 @@
     min-height: 650px;
     background-color: #F2F2F2;
     color: #333333;
+
+    &.show_result{
+        height: auto;
+    }
 }
+
+// ========================================
+//   firstview
+// ========================================
 
 .firstview{
     .firstview_start{
@@ -98,4 +107,38 @@
             @include sprite($index_estimate);
         }
     }
+}
+
+// ========================================
+//   result
+// ========================================
+
+.result{
+    @for $i from 1 through length($item-sprites){
+        &[data-id="#{$i}"]{
+            .result_item_inner{
+                @include sprite(nth($item-sprites, $i));
+            }
+        }
+    }
+}
+
+$result_item_width: 1040px;
+.result_item_container{
+    width: $result_item_width;
+    margin: 0 auto;
+}
+
+.result_item{
+    float: left;
+    width: $result_item_width / 10;
+    height: 110px;
+}
+
+.result_item_inner{
+    margin: 0 auto;
+}
+
+.result_item_tmpl{
+    display: none;
 }
