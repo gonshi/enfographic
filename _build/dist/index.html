@@ -31,28 +31,19 @@
       <div data-id="2" class="firstview">
         <p class="firstview_subttl">見積もりたい見積もり金額を入力してください。</p>
         <p class="firstview_input">
-          <input type="number" value="0" class="firstview_input_inner">
+          <input type="number" value="" class="firstview_input_inner">
         </p>
         <p class="firstview_start">この金額で見積もる</p>
       </div>
       <div class="result">
-        <!--
-        p.result_price 200,000
-        p.result_equal =
-        -->
-        <div class="result_item_container clearfix"></div>
-        <div class="result_item_tmpl">
-          <div class="result_item">
-            <p class="result_item_inner"></p>
-          </div>
+        <p class="result_price"><span class="result_price_yen"></span><span class="result_price_num"></span></p>
+        <p class="result_equal">=</p>
+        <div class="result_item">
+          <div data-id="top" class="result_item_hide"></div>
+          <div data-id="middle" class="result_item_hide"></div>
+          <div data-id="bottom" class="result_item_hide"></div>
         </div>
-        <!--
-        div.result_formula
-          p.result_formula_price
-          p.result_formula_equal =
-          p.result_formula_amount
-          p.result_formula_unit
-        -->
+        <p class="result_formula"><span class="result_formula_yen"></span><span class="result_formula_price"></span><span class="result_formula_equal">=</span><span class="result_formula_amount"></span><span class="result_formula_unit"></span></p>
       </div>
     </main>
     <header class="header">

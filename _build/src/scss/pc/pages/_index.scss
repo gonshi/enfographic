@@ -5,6 +5,14 @@
 @import "../index.scss";
 @import "../item.scss";
 
+.header{
+    &.show_result{
+        .header_ttl{
+            @include sprite($index_ttl-white);
+        }
+    }
+}
+
 .header_ttl{
     @include absolute(40px, '', '', 60px);
     @include sprite($index_logo);
@@ -114,31 +122,97 @@
 // ========================================
 
 .result{
-    @for $i from 1 through length($item-sprites){
+    $item: "beer";
+    display: none;
+    padding: 1px 0;
+
+    @each $i in $item{
         &[data-id="#{$i}"]{
-            .result_item_inner{
-                @include sprite(nth($item-sprites, $i));
+            .result_item{
+                background-image: url("../img/item/#{$i}.png")
+            }
+
+            .result_formula_amount{
+                &:before{
+                    display: inline-block;
+                    width: 100px;
+                    height: 100px;
+                    background-image: url("../img/item/#{$i}.png");
+                    background-size: contain;
+                    content: "";
+                }
+
+                &:after{
+                    @include absolute('', '', 5px, 17px);
+                    font-family: $yu-gothic;
+                    font-size: 13px;
+                    content: "生ビール";
+                }
             }
         }
     }
 }
 
+.result_price{
+    line-height: 1em;
+    margin-top: 240px;
+    text-align: center;
+}
+
+.result_price_yen{
+    display: inline-block;
+    @include sprite($index_yen-2);
+    margin-right: 15px;
+}
+
+.result_price_num{
+    color: #fff;
+    font-size: 108px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.result_equal{
+    @include sprite($index_equal);
+    @include hide-text();
+    margin: 80px auto;
+}
+
 $result_item_width: 1040px;
-.result_item_container{
+.result_item{
     width: $result_item_width;
     margin: 0 auto;
+    background-size: $result_item_width / 10 $result_item_width / 10;
 }
 
-.result_item{
-    float: left;
-    width: $result_item_width / 10;
-    height: 110px;
+.result_formula{
+    width: $result_item_width;
+    margin: 200px auto 100px;
+    color: #fff;
 }
 
-.result_item_inner{
-    margin: 0 auto;
+.result_formula_yen{
+    display: inline-block;
+    @include sprite($index_yen-2);
+    margin-right: 15px;
 }
 
-.result_item_tmpl{
-    display: none;
+.result_formula_price,
+.result_formula_equal,
+.result_formula_amount{
+    font-size: 104px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.result_formula_equal{
+    margin: 0 25px;
+}
+
+.result_formula_amount{
+    position: relative;
+    margin-left: 10px;
+}
+
+.result_formula_unit{
+    font-size: 56px;
+    margin-left: 10px;
 }
