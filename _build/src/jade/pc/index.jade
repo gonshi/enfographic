@@ -2,7 +2,7 @@ doctype html
 html(lang="ja")
   head(prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml")
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="viewport" content="width=#{viewport}, minimum-scale=#{320 / viewport}, maximum-scale=#{320 / viewport}, user-scalable=yes")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     title= title
     meta(name="description", content=description)
@@ -54,6 +54,7 @@ html(lang="ja")
       p.footer_again もう一度見積もる
       p.footer_copyright ©チャリンチャリンボーイズ
     script(src="js/lib/jquery-2.1.4.min.js")
+    script(src="js/lib/jquery.browser.min.js")
     script(src="js/lib/velocity.min.js")
     script(src="js/script.js")
     //

@@ -19,6 +19,7 @@ class Main
         for i in [0...$(".firstview").size()]
             @$firstview.push $(".firstview").filter("[data-id=\"#{i + 1}\"]")
         window.DUR = 500
+        window.VIEWPORT = 1080
 
         @exec()
 
@@ -112,5 +113,16 @@ class Main
         ###########################
         #   INIT
         ###########################
+
+        @$body.addClass "is_sp" unless $.browser.desktop
+
+        if $.browser.iphone || $.browser.ipod || $.browser.ipad
+            document.querySelector('meta[name="viewport"]').setAttribute(
+                "content",
+                "width=#{VIEWPORT}, minimum-scale=0.25, " +
+                "maximum-scale=1.6, user-scalable=no"
+            )
+        else if $.browser.android
+            window.onload = => @$body.css zoom: window.innerWidth / VIEWPORT
 
 new Main()

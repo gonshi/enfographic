@@ -364,6 +364,10 @@ body.show_result .footer {
   margin: 110px auto 50px;
 }
 
+.firstview {
+  position: relative;
+  height: 100vh;
+}
 .firstview .firstview_start {
   position: absolute;
   top: 50%;
