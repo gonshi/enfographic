@@ -35,7 +35,8 @@ html(lang="ja")
         p.result_price
           span.result_price_yen
           span.result_price_num
-        p.result_equal =
+        p.result_item_big
+          img(src="img/item/beer.png" alt="アイテム")
         div.result_item
           div.result_item_hide(data-id="top")
           div.result_item_hide(data-id="middle")
@@ -49,6 +50,9 @@ html(lang="ja")
     header.header
       h1.header_ttl ￥fographics
       div.header_social
+    footer.footer
+      p.footer_again もう一度見積もる
+      p.footer_copyright ©チャリンチャリンボーイズ
     script(src="js/lib/jquery-2.1.4.min.js")
     script(src="js/lib/velocity.min.js")
     script(src="js/script.js")
