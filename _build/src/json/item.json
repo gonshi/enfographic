@@ -1,0 +1,58 @@
+{
+    items: [
+        {
+            name: "beer",
+            name_jp: "ビール",
+            color: "#F63831",
+            price: 500
+        },
+        {
+            name: "benz",
+            name_jp: "ベンツ",
+            color: "#1C1C1C",
+            price: 5000000
+        },
+        {
+            name: "disney",
+            name_jp: "夢の国",
+            color: "#FC8AB6",
+            price: 5000
+        },
+        {
+            name: "hills",
+            name_jp: "六本木ヒルズ",
+            color: "#4DC6F5",
+            price: 5000000
+        },
+        {
+            name: "macbook",
+            name_jp: "Macbook",
+            color: "#E0E1E1",
+            price: 200000
+        },
+        {
+            name: "pazdra",
+            name_jp: "魔法石",
+            color: "#502517",
+            price: 100
+        },
+        {
+            name: "rice",
+            name_jp: "ご飯",
+            color: "#519BAC",
+            price: 200
+        },
+        {
+            name: "travel",
+            name_jp: "世界一周",
+            color: "#FECB2F",
+            price: 1000000
+        },
+        {
+            name: "vuitton",
+            name_jp: "高級ブランドの財布",
+            color: "#D9A637",
+            price: 50000
+        }
+    ]
+}

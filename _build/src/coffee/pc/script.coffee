@@ -4,6 +4,7 @@ class Main
         @$win = $(window)
         @$body = $("body")
         @$header = $(".header")
+        @$firstview_start = $(".firstview_start")
         @$contents = $(".contents")
         @$result = $(".result")
         @$result_price = $(".result_price")
@@ -12,9 +13,15 @@ class Main
         @$result_item_big = $(".result_item_big")
         @$result_item_hide = $(".result_item_hide")
         @$result_formula_price = $(".result_formula_price")
-        @$result_formula_amount = $(".result_formula_amount")
+        @$result_formula_amount_icon = $(".result_formula_amount_icon")
+        @$result_formula_amount_txt = $(".result_formula_amount_txt")
+        @$result_formula_amount_name = $(".result_formula_amount_name")
         @$result_formula_unit = $(".result_formula_unit")
         @$footer = $(".footer")
+
+        @item_data = require("../../json/item.json").items
+
+        @firstview_step = 0
 
         for i in [0...$(".firstview").size()]
             @$firstview.push $(".firstview").filter("[data-id=\"#{i + 1}\"]")
@@ -23,92 +30,113 @@ class Main
 
         @exec()
 
+    showResult: (price) ->
+        @$body.addClass "show_result"
+
+        _rand = Math.floor(Math.random() * @item_data.length)
+        _count = 0
+        while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 10)
+            _rand = (_rand + 1) % @item_data.length
+            break if _count++ > 10
+        @$body.velocity backgroundColor: @item_data[_rand].color, DUR
+        @$result_item_hide.velocity backgroundColor: @item_data[_rand].color, DUR
+
+        # 結果表示
+        @$result.show().attr "data-id": @item_data[_rand].name
+
+        # 3桁カンマ区切り
+        _separated_price = String(price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
+
+        @$result_item.css(
+            backgroundImage: "url(\"../img/item/#{@item_data[_rand].name}.png\")"
+        )
+        @$result_price_num.text _separated_price
+        @$result_formula_price.text _separated_price
+
+        @$result_formula_amount_icon.css(
+            backgroundImage: "url(../img/item/#{@item_data[_rand].name}.png)"
+        )
+
+        @$result_formula_amount_name.text @item_data[_rand].name_jp
+
+        @$result_formula_amount_txt.text(
+            String(Math.floor(price / @item_data[_rand].price)).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
+        )
+        @$result_formula_unit.text "杯分"
+
+        @$result_item_big.css(
+            top: @$win.height() / 2
+            backgroundImage: "url(../img/item/#{@item_data[_rand].name}.png)"
+        )
+
+        @$result_item_big.velocity(
+            scale: [1, 0]
+            opacity: [1, 0]
+        ,
+            duration: DUR * 1.5
+            delay: DUR
+            easing: [300, 20]
+        ).
+        velocity(
+            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2
+            marginLeft: -520
+            width: 100
+            height: 100
+        ,
+            duration: DUR * 1.5
+            delay: DUR * 2
+            complete: =>
+                # (@$result_item.width() / 10) はアイテム1個あたりの画像幅
+                @$result_item.height(
+                    Math.ceil(Math.floor(price / @item_data[_rand].price) / 10) * (@$result_item.width() / 10)
+                )
+                # 1桁単位の分を隠す
+                if Math.floor(price / @item_data[_rand].price) == 10
+                    @$result_item_hide.width 0
+                else
+                    @$result_item_hide.width(
+                        (10 - Math.floor(price / @item_data[_rand].price) % 10) * (@$result_item.width() / 10)
+                    )
+
+                @$result_item_big.velocity opacity: 0, DUR
+                @$result_price.velocity opacity: 1, DUR
+                @$result_item.velocity opacity: 1, DUR
+        )
+
+    backFirstviewStep: -> @firstview_step--
+
+    introHandler: (step) ->
+        switch step
+            when 0
+                @$firstview[0].velocity opacity: 0, DUR, =>
+                    @$firstview[0].hide()
+                    @$firstview[1].show().velocity opacity: 1, DUR
+                    @$firstview[1].find(".firstview_input_inner").focus()
+            when 1
+                if isNaN parseInt(@$firstview[1].find(".firstview_input_inner").val())
+                    alert "数値を適切に入力してください。"
+                    @backFirstviewStep()
+                    return
+                else if parseInt(@$firstview[1].find(".firstview_input_inner").val()) > 499999999
+                    alert "数値が大きすぎてブラウザの挙動が重くなる可能性があります。"
+
+                @$firstview[1].velocity opacity: 0, DUR, =>
+                    @$firstview[1].hide()
+                    @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val())
+
     exec: ->
         ###########################
         #   EVENT LISTENER
         ###########################
 
-        @$firstview[0].find(".firstview_start").one "click", =>
-            @$firstview[0].velocity opacity: 0, DUR, =>
-                @$firstview[0].hide()
-                @$firstview[1].find(".firstview_input_inner").focus()
-            @$firstview[1].show().velocity opacity: 1, DUR
+        @$firstview_start.on "click", => @introHandler @firstview_step++
 
-        @$firstview[1].find(".firstview_start").on "click", =>
-            if isNaN parseInt(@$firstview[1].find(".firstview_input_inner").val())
-                alert "数値を適切に入力してください。"
-                return
-            else if parseInt(@$firstview[1].find(".firstview_input_inner").val()) > 499999999
-                alert "数値が大きすぎてブラウザの挙動が重くなる可能性があります。"
-
-            @$firstview[1].find(".firstview_start").off "click"
-
-            @$firstview[1].velocity opacity: 0, DUR, =>
-                @$firstview[1].hide()
-                @$body.addClass "show_result"
-                @$body.velocity backgroundColor: "#FC363B", DUR
-                @$result_item_hide.velocity backgroundColor: "#FC363B", DUR
-
-                # 結果表示
-                @$result.show().attr "data-id": "beer"
-
-                _price = parseInt(@$firstview[1].find(".firstview_input_inner").val())
-
-                # 3桁カンマ区切り
-                _separated_price = String(_price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
-                _item_price = 500
-
-                @$result_price_num.text _separated_price
-                @$result_formula_price.text _separated_price
-                @$result_formula_amount.attr("data-id": "beer").text(
-                    String(Math.floor(_price / _item_price)).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
-                )
-                @$result_formula_unit.text "杯分"
-
-                @$result_item_big.css top: @$win.height() / 2
-
-                @$result_item_big.velocity(
-                    scale: [1, 0]
-                    opacity: [1, 0]
-                ,
-                    duration: DUR * 1.5
-                    delay: DUR
-                    easing: [300, 20]
-                ).
-                velocity(
-                    marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2
-                    marginLeft: -520
-                    width: 100
-                    height: 100
-                ,
-                    duration: DUR * 1.5
-                    delay: DUR * 2
-                    complete: =>
-                        # (@$result_item.width() / 10) はアイテム1個あたりの画像幅
-                        @$result_item.height(
-                            Math.ceil(Math.floor(_price / _item_price) / 10) * (@$result_item.width() / 10)
-                        )
-                        # 1桁単位の分を隠す
-                        if Math.floor(_price / _item_price) == 10
-                            @$result_item_hide.width 0
-                        else
-                            @$result_item_hide.width(
-                                (10 - Math.floor(_price / _item_price) % 10) * (@$result_item.width() / 10)
-                            )
-
-                        @$result_item_big.velocity opacity: 0, DUR
-                        @$result_price.velocity opacity: 1, DUR
-                        @$result_item.velocity opacity: 1, DUR
-                )
-
+        # 再トライ
         @$footer.find(".footer_again").on "click", -> location.reload()
 
+        # keyboardで次へ進む
         @$win.on "keydown", (e) =>
-            if e.keyCode == 13
-                if @$firstview[0].css("display") == "block"
-                    @$firstview[0].find(".firstview_start").trigger "click"
-                else if @$firstview[1].css("display") == "block"
-                    @$firstview[1].find(".firstview_start").trigger "click"
+            @introHandler @firstview_step++ if e.keyCode == 13
 
         ###########################
         #   INIT

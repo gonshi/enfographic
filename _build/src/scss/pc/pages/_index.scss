@@ -158,35 +158,8 @@ body{
 // ========================================
 
 .result{
-    $item: "beer";
     display: none;
     padding: 1px 0;
-
-    @each $i in $item{
-        &[data-id="#{$i}"]{
-            .result_item{
-                background-image: url("../img/item/#{$i}.png")
-            }
-
-            .result_formula_amount{
-                &:before{
-                    display: inline-block;
-                    width: 100px;
-                    height: 100px;
-                    background-image: url("../img/item/#{$i}.png");
-                    background-size: contain;
-                    content: "";
-                }
-
-                &:after{
-                    @include absolute('', '', 5px, 17px);
-                    font-family: $yu-gothic;
-                    font-size: 13px;
-                    content: "生ビール";
-                }
-            }
-        }
-    }
 }
 
 .result_price{
@@ -232,12 +205,8 @@ $result_item_width: 1040px;
     height: 600px;
     margin-top: (600px / -2);
     margin-left: (600px / -2);
+    background-size: contain;
     opacity: 0;
-
-    img{
-        width: 100%;
-        height: 100%;
-    }
 }
 
 .result_item_hide{
@@ -255,8 +224,11 @@ $result_item_width: 1040px;
     text-align: center;
 }
 
-.result_formula_yen{
+.result_formula_inner{
     display: inline-block;
+}
+
+.result_formula_yen{
     @include sprite($index_yen-2);
     margin-right: 15px;
 }
@@ -273,9 +245,25 @@ $result_item_width: 1040px;
 }
 
 .result_formula_amount{
+    display: inline-block;
     position: relative;
-    margin-left: 10px;
+    margin-left: 80px;
 }
+
+.result_formula_amount_icon{
+    @include absolute(25px, '', '', -103px);
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+}
+
+.result_formula_amount_name{
+    @include absolute('', '', 15px, -103px);
+    width: 100px;
+    font-family: $yu-gothic;
+    font-size: 13px;
+}
+
 
 .result_formula_unit{
     font-size: 56px;

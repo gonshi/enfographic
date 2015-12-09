@@ -24,7 +24,7 @@ html(lang="ja")
     main.contents
       div.firstview(data-id="1")
         h2.firstview_ttl ￥fographics
-        p.firstview_txt ￥fographics(エンフォグラフィクス)あなたの見積もりを別のものに置き換えて見積もる。新しい見積もりサービスです。
+        p.firstview_txt ￥fographics(エンフォグラフィクス)あなたの見積もりを別のものに置き換えて見積もる、新しい見積もりサービスです。
         p.firstview_start はじめる
       div.firstview(data-id="2")
         p.firstview_subttl 見積もりたい見積もり金額を入力してください。
@@ -36,17 +36,19 @@ html(lang="ja")
           span.result_price_yen
           span.result_price_num
         p.result_item_big
-          img(src="img/item/beer.png" alt="アイテム")
         div.result_item
           div.result_item_hide(data-id="top")
           div.result_item_hide(data-id="middle")
           div.result_item_hide(data-id="bottom")
-        p.result_formula
-          span.result_formula_yen
-          span.result_formula_price
-          span.result_formula_equal =
-          span.result_formula_amount
-          span.result_formula_unit
+        div.result_formula
+          p.result_formula_inner.result_formula_yen
+          p.result_formula_inner.result_formula_price
+          p.result_formula_inner.result_formula_equal =
+          div.result_formula_inner.result_formula_amount
+            p.result_formula_amount_icon
+            p.result_formula_amount_txt
+            p.result_formula_amount_name
+          p.result_formula_inner.result_formula_unit
     header.header
       h1.header_ttl ￥fographics
       div.header_social
