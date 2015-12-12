@@ -16,15 +16,21 @@ body{
 .header{
     @include show_result{
         .header_ttl{
-            @include sprite($index_ttl-white);
+            a{
+                display: block;
+                @include sprite($index_logo-white);
+            }
         }
     }
 }
 
 .header_ttl{
-    @include absolute(40px, '', '', 60px);
-    @include sprite($index_logo);
-    @include hide-text();
+    a{
+        display: block;
+        @include absolute(40px, '', '', 60px);
+        @include sprite($index_logo);
+        @include hide-text();
+    }
 }
 
 .contents{
@@ -69,20 +75,10 @@ body{
 // ========================================
 
 .firstview{
+    display: none;
     position: relative;
     height: 100vh;
-
-    .firstview_start{
-        @include absolute(50%, 0, '', 0);
-        margin: auto;
-        @include hide-text();
-        transform: translateY(145px);
-        cursor: pointer;
-
-        &:hover{
-            opacity: 0.7;
-        }
-    }
+    opacity: 0;
 
     &[data-id="1"]{
         .firstview_ttl{
@@ -107,9 +103,6 @@ body{
     }
 
     &[data-id="2"]{
-        display: none;
-        opacity: 0;
-
         .firstview_subttl{
             @include absolute(50%, 0, '', 0);
             text-align: center;
@@ -152,6 +145,26 @@ body{
         }
     }
 }
+
+.firstview_start{
+    @include absolute(50%, 0, '', 0);
+    margin: auto;
+    @include hide-text();
+    transform: translateY(145px);
+    cursor: pointer;
+
+    &:hover{
+        opacity: 0.7;
+    }
+}
+
+.firstview_logo-big{
+    @include absolute(0, 0, 0, 0);
+    @include sprite($index_logo-big);
+    margin: auto;
+    transform: translateY(-60px);
+}
+
 
 // ========================================
 //   result

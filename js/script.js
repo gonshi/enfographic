@@ -37,7 +37,7 @@ Main = (function() {
     this.$body.addClass("show_result");
     _rand = Math.floor(Math.random() * this.item_data.length);
     _count = 0;
-    while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 10) {
+    while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 1) {
       _rand = (_rand + 1) % this.item_data.length;
       if (_count++ > 10) {
         break;
@@ -63,7 +63,7 @@ Main = (function() {
     });
     this.$result_formula_amount_name.text(this.item_data[_rand].name_jp);
     this.$result_formula_amount_txt.text(String(Math.floor(price / this.item_data[_rand].price)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-    this.$result_formula_unit.text("杯分");
+    this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.css({
       top: this.$win.height() / 2,
       backgroundImage: "url(../img/item/" + this.item_data[_rand].name + ".png)"
@@ -76,8 +76,8 @@ Main = (function() {
       delay: DUR,
       easing: [300, 20]
     }).velocity({
-      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2,
-      marginLeft: -520,
+      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2 + 2,
+      marginLeft: -518,
       width: 100,
       height: 100
     }, {
@@ -149,7 +149,7 @@ Main = (function() {
       };
     })(this));
     this.$footer.find(".footer_again").on("click", function() {
-      return location.reload();
+      return location.href = "./?skip";
     });
     this.$win.on("keydown", (function(_this) {
       return function(e) {
@@ -162,15 +162,22 @@ Main = (function() {
       this.$body.addClass("is_sp");
     }
     if ($.browser.iphone || $.browser.ipod || $.browser.ipad) {
-      return document.querySelector('meta[name="viewport"]').setAttribute("content", ("width=" + VIEWPORT + ", minimum-scale=0.25, ") + "maximum-scale=1.6, user-scalable=no");
+      document.querySelector('meta[name="viewport"]').setAttribute("content", ("width=" + VIEWPORT + ", minimum-scale=0.25, ") + "maximum-scale=1.6, user-scalable=no");
     } else if ($.browser.android) {
-      return window.onload = (function(_this) {
+      window.onload = (function(_this) {
         return function() {
           return _this.$body.css({
             zoom: window.innerWidth / VIEWPORT
           });
         };
       })(this);
+    }
+    if (location.search.match("skip")) {
+      return this.introHandler(this.firstview_step++);
+    } else {
+      return this.$firstview[0].show().velocity({
+        opacity: 1
+      });
     }
   };
 
@@ -188,54 +195,63 @@ module.exports={
             name: "beer",
             name_jp: "ビール",
             color: "#F63831",
+            unit: "杯",
             price: 500
         },
         {
             name: "benz",
             name_jp: "ベンツ",
             color: "#1C1C1C",
+            unit: "台",
             price: 5000000
         },
         {
             name: "disney",
             name_jp: "夢の国",
             color: "#FC8AB6",
+            unit: "回",
             price: 5000
         },
         {
             name: "hills",
             name_jp: "六本木ヒルズ",
             color: "#4DC6F5",
+            unit: "部屋",
             price: 5000000
         },
         {
             name: "macbook",
             name_jp: "Macbook",
             color: "#E0E1E1",
+            unit: "台",
             price: 200000
         },
         {
             name: "pazdra",
             name_jp: "魔法石",
             color: "#502517",
+            unit: "個",
             price: 100
         },
         {
             name: "rice",
             name_jp: "ご飯",
             color: "#519BAC",
+            unit: "杯",
             price: 200
         },
         {
             name: "travel",
-            name_jp: "世界一周",
+            name_jp: "世界",
             color: "#FECB2F",
+            unit: "周",
             price: 1000000
         },
         {
             name: "vuitton",
             name_jp: "高級ブランドの財布",
             color: "#D9A637",
+            unit: "個",
             price: 50000
         }
     ]

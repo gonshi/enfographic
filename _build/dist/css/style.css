@@ -300,21 +300,23 @@ body {
   background-color: #F2F2F2;
 }
 
-body.show_result .header .header_ttl {
+body.show_result .header .header_ttl a {
+  display: block;
   background-image: url(../img/index.png);
-  background-position: -284px -207px;
-  width: 162px;
-  height: 33px;
+  background-position: -731px -231px;
+  width: 144px;
+  height: 40px;
 }
 
-.header_ttl {
+.header_ttl a {
+  display: block;
   position: absolute;
   top: 40px;
   left: 60px;
   background-image: url(../img/index.png);
-  background-position: -284px -146px;
-  width: 162px;
-  height: 33px;
+  background-position: -879px -231px;
+  width: 144px;
+  height: 40px;
   overflow: hidden;
   white-space: nowrap;
   text-indent: 110%;
@@ -340,7 +342,7 @@ body.show_result .footer {
 
 .footer_again {
   background-image: url(../img/index.png);
-  background-position: 0px -146px;
+  background-position: -447px -170px;
   width: 280px;
   height: 57px;
   margin: 90px auto;
@@ -355,7 +357,7 @@ body.show_result .footer {
 
 .footer_copyright {
   background-image: url(../img/index.png);
-  background-position: -284px -244px;
+  background-position: -891px -275px;
   width: 156px;
   height: 12px;
   overflow: hidden;
@@ -365,25 +367,10 @@ body.show_result .footer {
 }
 
 .firstview {
+  display: none;
   position: relative;
   height: 100vh;
-}
-.firstview .firstview_start {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  overflow: hidden;
-  white-space: nowrap;
-  text-indent: 110%;
-  -webkit-transform: translateY(145px);
-      -ms-transform: translateY(145px);
-          transform: translateY(145px);
-  cursor: pointer;
-}
-.firstview .firstview_start:hover {
-  opacity: 0.7;
+  opacity: 0;
 }
 .firstview[data-id="1"] .firstview_ttl {
   position: absolute;
@@ -391,9 +378,9 @@ body.show_result .footer {
   left: 0;
   right: 0;
   background-image: url(../img/index.png);
-  background-position: 0px 0px;
-  width: 519px;
-  height: 142px;
+  background-position: -447px 0px;
+  width: 608px;
+  height: 166px;
   margin: auto;
   -webkit-transform: translateY(-175px);
       -ms-transform: translateY(-175px);
@@ -416,13 +403,9 @@ body.show_result .footer {
 }
 .firstview[data-id="1"] .firstview_start {
   background-image: url(../img/index.png);
-  background-position: 0px -268px;
+  background-position: -731px -170px;
   width: 280px;
   height: 57px;
-}
-.firstview[data-id="2"] {
-  display: none;
-  opacity: 0;
 }
 .firstview[data-id="2"] .firstview_subttl {
   position: absolute;
@@ -454,7 +437,7 @@ body.show_result .footer {
   bottom: 15px;
   left: 15px;
   background-image: url(../img/index.png);
-  background-position: -284px -268px;
+  background-position: -503px -292px;
   width: 45px;
   height: 52px;
   content: "";
@@ -475,9 +458,43 @@ body.show_result .footer {
 }
 .firstview[data-id="2"] .firstview_start {
   background-image: url(../img/index.png);
-  background-position: 0px -207px;
+  background-position: -447px -231px;
   width: 280px;
   height: 57px;
+}
+
+.firstview_start {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 110%;
+  -webkit-transform: translateY(145px);
+      -ms-transform: translateY(145px);
+          transform: translateY(145px);
+  cursor: pointer;
+}
+.firstview_start:hover {
+  opacity: 0.7;
+}
+
+.firstview_logo-big {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(../img/index.png);
+  background-position: 0px 0px;
+  width: 443px;
+  height: 443px;
+  margin: auto;
+  -webkit-transform: translateY(-60px);
+      -ms-transform: translateY(-60px);
+          transform: translateY(-60px);
 }
 
 .result {
@@ -494,7 +511,7 @@ body.show_result .footer {
 .result_price:after {
   display: block;
   background-image: url(../img/index.png);
-  background-position: -333px -268px;
+  background-position: -1015px -170px;
   width: 25px;
   height: 45px;
   overflow: hidden;
@@ -507,7 +524,7 @@ body.show_result .footer {
 .result_price_yen {
   display: inline-block;
   background-image: url(../img/index.png);
-  background-position: 0px -329px;
+  background-position: -447px -292px;
   width: 52px;
   height: 59px;
   margin-right: 15px;
@@ -562,7 +579,7 @@ body.show_result .footer {
 
 .result_formula_yen {
   background-image: url(../img/index.png);
-  background-position: 0px -329px;
+  background-position: -447px -292px;
   width: 52px;
   height: 59px;
   margin-right: 15px;

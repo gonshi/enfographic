@@ -35,9 +35,10 @@ class Main
 
         _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
-        while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 10)
+        while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 1)
             _rand = (_rand + 1) % @item_data.length
             break if _count++ > 10
+
         @$body.velocity backgroundColor: @item_data[_rand].color, DUR
         @$result_item_hide.velocity backgroundColor: @item_data[_rand].color, DUR
 
@@ -62,7 +63,7 @@ class Main
         @$result_formula_amount_txt.text(
             String(Math.floor(price / @item_data[_rand].price)).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
         )
-        @$result_formula_unit.text "杯分"
+        @$result_formula_unit.text "#{@item_data[_rand].unit}分"
 
         @$result_item_big.css(
             top: @$win.height() / 2
@@ -78,8 +79,8 @@ class Main
             easing: [300, 20]
         ).
         velocity(
-            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2
-            marginLeft: -520
+            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2 + 2
+            marginLeft: -518
             width: 100
             height: 100
         ,
@@ -132,7 +133,7 @@ class Main
         @$firstview_start.on "click", => @introHandler @firstview_step++
 
         # 再トライ
-        @$footer.find(".footer_again").on "click", -> location.reload()
+        @$footer.find(".footer_again").on "click", -> location.href = "./?skip"
 
         # keyboardで次へ進む
         @$win.on "keydown", (e) =>
@@ -152,5 +153,10 @@ class Main
             )
         else if $.browser.android
             window.onload = => @$body.css zoom: window.innerWidth / VIEWPORT
+
+        if location.search.match "skip"
+            @introHandler @firstview_step++
+        else
+            @$firstview[0].show().velocity opacity: 1
 
 new Main()
