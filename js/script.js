@@ -54,19 +54,19 @@ Main = (function() {
     });
     _separated_price = String(price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     this.$result_item.css({
-      backgroundImage: "url(\"../img/item/" + this.item_data[_rand].name + ".png\")"
+      backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
     });
     this.$result_price_num.text(_separated_price);
     this.$result_formula_price.text(_separated_price);
     this.$result_formula_amount_icon.css({
-      backgroundImage: "url(../img/item/" + this.item_data[_rand].name + ".png)"
+      backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
     });
     this.$result_formula_amount_name.text(this.item_data[_rand].name_jp);
     this.$result_formula_amount_txt.text(String(Math.floor(price / this.item_data[_rand].price)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.css({
       top: this.$win.height() / 2,
-      backgroundImage: "url(../img/item/" + this.item_data[_rand].name + ".png)"
+      backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
     });
     return this.$result_item_big.velocity({
       scale: [1, 0],

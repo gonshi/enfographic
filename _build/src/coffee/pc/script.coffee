@@ -49,13 +49,13 @@ class Main
         _separated_price = String(price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
 
         @$result_item.css(
-            backgroundImage: "url(\"../img/item/#{@item_data[_rand].name}.png\")"
+            backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
         @$result_price_num.text _separated_price
         @$result_formula_price.text _separated_price
 
         @$result_formula_amount_icon.css(
-            backgroundImage: "url(../img/item/#{@item_data[_rand].name}.png)"
+            backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
 
         @$result_formula_amount_name.text @item_data[_rand].name_jp
@@ -67,7 +67,7 @@ class Main
 
         @$result_item_big.css(
             top: @$win.height() / 2
-            backgroundImage: "url(../img/item/#{@item_data[_rand].name}.png)"
+            backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
 
         @$result_item_big.velocity(
