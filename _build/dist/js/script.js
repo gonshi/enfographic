@@ -34,7 +34,9 @@ Main = (function() {
 
   Main.prototype.showResult = function(price) {
     var _count, _rand, _separated_price;
-    this.$body.addClass("show_result");
+    this.$body.prop({
+      scrollTop: 0
+    }).addClass("show_result");
     _rand = Math.floor(Math.random() * this.item_data.length);
     _count = 0;
     while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 1) {
@@ -54,7 +56,11 @@ Main = (function() {
     });
     _separated_price = String(price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     this.$result_item.css({
+      height: 900,
       backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
+    });
+    this.$result_price.css({
+      opacity: 0
     });
     this.$result_price_num.text(_separated_price);
     this.$result_formula_price.text(_separated_price);
@@ -64,9 +70,12 @@ Main = (function() {
     this.$result_formula_amount_name.text(this.item_data[_rand].name_jp);
     this.$result_formula_amount_txt.text(String(Math.floor(price / this.item_data[_rand].price)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
-    this.$result_item_big.css({
+    this.$result_item_big.removeAttr("style").css({
       top: this.$win.height() / 2,
       backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
+    });
+    this.$result_item.css({
+      opacity: 0
     });
     return this.$result_item_big.velocity({
       scale: [1, 0],
@@ -76,8 +85,8 @@ Main = (function() {
       delay: DUR,
       easing: [300, 20]
     }).velocity({
-      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2 + 2,
       marginLeft: -518,
+      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2 + 2,
       width: 100,
       height: 100
     }, {
@@ -148,6 +157,11 @@ Main = (function() {
         return _this.introHandler(_this.firstview_step++);
       };
     })(this));
+    this.$footer.find(".footer_another").on("click", (function(_this) {
+      return function() {
+        return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val()));
+      };
+    })(this));
     this.$footer.find(".footer_again").on("click", function() {
       return location.href = "./?skip";
     });
@@ -193,10 +207,10 @@ module.exports={
     items: [
         {
             name: "beer",
-            name_jp: "ビール",
+            name_jp: "生ビール",
             color: "#F63831",
             unit: "杯",
-            price: 500
+            price: 540
         },
         {
             name: "benz",
@@ -207,38 +221,38 @@ module.exports={
         },
         {
             name: "disney",
-            name_jp: "夢の国",
+            name_jp: "夢の国ペアチケット",
             color: "#FC8AB6",
-            unit: "回",
-            price: 5000
+            unit: "組",
+            price: 17000
         },
         {
             name: "hills",
-            name_jp: "六本木ヒルズ",
+            name_jp: "六本木ヒルズの家賃",
             color: "#4DC6F5",
-            unit: "部屋",
-            price: 5000000
+            unit: "月",
+            price: 3240000
         },
         {
             name: "macbook",
-            name_jp: "Macbook",
+            name_jp: "MacbookPro",
             color: "#E0E1E1",
             unit: "台",
-            price: 200000
+            price: 148800
         },
         {
             name: "pazdra",
             name_jp: "魔法石",
             color: "#502517",
             unit: "個",
-            price: 100
+            price: 120
         },
         {
             name: "rice",
-            name_jp: "ご飯",
+            name_jp: "お米",
             color: "#519BAC",
             unit: "杯",
-            price: 200
+            price: 40
         },
         {
             name: "travel",
@@ -249,10 +263,10 @@ module.exports={
         },
         {
             name: "vuitton",
-            name_jp: "高級ブランドの財布",
+            name_jp: "ヴィトンの財布",
             color: "#D9A637",
             unit: "個",
-            price: 50000
+            price: 90000
         }
     ]
 }

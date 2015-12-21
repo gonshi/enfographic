@@ -31,7 +31,7 @@ class Main
         @exec()
 
     showResult: (price) ->
-        @$body.addClass "show_result"
+        @$body.prop(scrollTop: 0).addClass "show_result"
 
         _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
@@ -49,8 +49,11 @@ class Main
         _separated_price = String(price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
 
         @$result_item.css(
+            height: 900
             backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
+
+        @$result_price.css opacity: 0
         @$result_price_num.text _separated_price
         @$result_formula_price.text _separated_price
 
@@ -65,10 +68,12 @@ class Main
         )
         @$result_formula_unit.text "#{@item_data[_rand].unit}分"
 
-        @$result_item_big.css(
+        @$result_item_big.removeAttr("style").css(
             top: @$win.height() / 2
             backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
+
+        @$result_item.css opacity: 0
 
         @$result_item_big.velocity(
             scale: [1, 0]
@@ -79,8 +84,8 @@ class Main
             easing: [300, 20]
         ).
         velocity(
-            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2 + 2
             marginLeft: -518
+            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2 + 2
             width: 100
             height: 100
         ,
@@ -133,6 +138,9 @@ class Main
         @$firstview_start.on "click", => @introHandler @firstview_step++
 
         # 再トライ
+        @$footer.find(".footer_another").on "click", =>
+            @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val())
+
         @$footer.find(".footer_again").on "click", -> location.href = "./?skip"
 
         # keyboardで次へ進む

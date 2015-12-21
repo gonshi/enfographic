@@ -28,7 +28,7 @@ html(lang="ja")
         p.firstview_txt ¥fographics(エンフォグラフィックス)は、金額をさまざまなものに変換し、視覚的に表現することで、お金の価値を多角的に見つめなおすサイトです。
         p.firstview_start はじめる
       div.firstview(data-id="2")
-        p.firstview_subttl 見積もりたい見積もり金額を入力してください。
+        p.firstview_subttl 変換したい金額を入力してください。
         p.firstview_input
           input.firstview_input_inner(type="number" value="")
         p.firstview_start この金額で見積もる
@@ -55,8 +55,9 @@ html(lang="ja")
         a(href="./") ￥fographics
       div.header_social
     footer.footer
-      p.footer_again もう一度見積もる
-      p.footer_copyright ©チャリンチャリンボーイズ
+      p.footer_inner.footer_another 別のなにかに変換する
+      p.footer_inner.footer_again 金額を入れなおす
+      //p.footer_copyright ©チャリンチャリンボーイズ
     script(src="js/lib/jquery-2.1.4.min.js")
     script(src="js/lib/jquery.browser.min.js")
     script(src="js/lib/velocity.min.js")

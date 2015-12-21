@@ -2,10 +2,10 @@
     items: [
         {
             name: "beer",
-            name_jp: "ビール",
+            name_jp: "生ビール",
             color: "#F63831",
             unit: "杯",
-            price: 500
+            price: 540
         },
         {
             name: "benz",
@@ -16,38 +16,38 @@
         },
         {
             name: "disney",
-            name_jp: "夢の国",
+            name_jp: "夢の国ペアチケット",
             color: "#FC8AB6",
-            unit: "回",
-            price: 5000
+            unit: "組",
+            price: 17000
         },
         {
             name: "hills",
-            name_jp: "六本木ヒルズ",
+            name_jp: "六本木ヒルズの家賃",
             color: "#4DC6F5",
-            unit: "部屋",
-            price: 5000000
+            unit: "月",
+            price: 3240000
         },
         {
             name: "macbook",
-            name_jp: "Macbook",
+            name_jp: "MacbookPro",
             color: "#E0E1E1",
             unit: "台",
-            price: 200000
+            price: 148800
         },
         {
             name: "pazdra",
             name_jp: "魔法石",
             color: "#502517",
             unit: "個",
-            price: 100
+            price: 120
         },
         {
             name: "rice",
-            name_jp: "ご飯",
+            name_jp: "お米",
             color: "#519BAC",
             unit: "杯",
-            price: 200
+            price: 40
         },
         {
             name: "travel",
@@ -58,10 +58,10 @@
         },
         {
             name: "vuitton",
-            name_jp: "高級ブランドの財布",
+            name_jp: "ヴィトンの財布",
             color: "#D9A637",
             unit: "個",
-            price: 50000
+            price: 90000
         }
     ]
 }
