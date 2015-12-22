@@ -135,6 +135,7 @@ class Main
             marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2 + 2
             width: 100
             height: 100
+            scale: [1, _result_item_big_ratio]
         ,
             duration: DUR * 1.5
             delay: DUR * 2
