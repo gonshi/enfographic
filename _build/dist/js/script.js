@@ -27,6 +27,7 @@ Main = (function() {
     this.item_data = [];
     this.setItemData();
     this.firstview_step = 0;
+    this.MAX_LENGTH = 10;
     for (i = j = 0, ref = $(".firstview").size(); 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
       this.$firstview.push($(".firstview").filter("[data-id=\"" + (i + 1) + "\"]"));
     }
@@ -200,6 +201,9 @@ Main = (function() {
         }
       };
     })(this));
+    this.$firstview[1].find(".firstview_input_inner").on("input propertychange", function() {
+      return $(this).val($(this).val().slice(0, 10));
+    });
     if (!$.browser.desktop) {
       this.$body.addClass("is_sp");
     }

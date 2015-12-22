@@ -58,10 +58,10 @@
         },
         {
             name: "travel",
-            name_jp: "世界",
+            name_jp: "世界一周",
             color: "white",
             background: "#FECB2F",
-            unit: "周",
+            unit: "回",
             price: 1000000
         },
         {

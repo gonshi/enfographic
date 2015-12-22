@@ -26,6 +26,8 @@ class Main
 
         @firstview_step = 0
 
+        @MAX_LENGTH = 10
+
         for i in [0...$(".firstview").size()]
             @$firstview.push $(".firstview").filter("[data-id=\"#{i + 1}\"]")
         window.DUR = 500
@@ -165,6 +167,9 @@ class Main
         # keyboardで次へ進む
         @$win.on "keydown", (e) =>
             @introHandler @firstview_step++ if e.keyCode == 13
+
+        @$firstview[1].find(".firstview_input_inner").on "input propertychange", ->
+            $(this).val $(this).val().slice(0, 10) # 10文字以上は禁止
 
         ###########################
         #   INIT
