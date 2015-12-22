@@ -22,7 +22,9 @@ Main = (function() {
     this.$result_formula_amount_name = $(".result_formula_amount_name");
     this.$result_formula_unit = $(".result_formula_unit");
     this.$footer = $(".footer");
-    this.item_data = require("../../json/item.json").items;
+    this.item_data_copy = require("../../json/item.json").items;
+    this.item_data = [];
+    this.setItemData();
     this.firstview_step = 0;
     for (i = j = 0, ref = $(".firstview").size(); 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
       this.$firstview.push($(".firstview").filter("[data-id=\"" + (i + 1) + "\"]"));
@@ -32,18 +34,36 @@ Main = (function() {
     this.exec();
   }
 
+  Main.prototype.setItemData = function() {
+    var i, j, ref, results;
+    results = [];
+    for (i = j = 0, ref = this.item_data_copy.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+      results.push(this.item_data[i] = this.item_data_copy[i]);
+    }
+    return results;
+  };
+
   Main.prototype.showResult = function(price) {
     var _count, _rand, _separated_price;
     this.$body.prop({
       scrollTop: 0
     }).addClass("show_result");
+    if (this.item_data.length === 0) {
+      this.setItemData();
+    }
     _rand = Math.floor(Math.random() * this.item_data.length);
     _count = 0;
     while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 1) {
-      _rand = (_rand + 1) % this.item_data.length;
-      if (_count++ > 10) {
-        break;
+      if (_count++ > this.item_data.length - 1) {
+        if (this.item_data.length < this.item_data_copy.length) {
+          this.setItemData();
+          _rand = Math.floor(Math.random() * this.item_data.length);
+          _count = 0;
+        } else {
+          break;
+        }
       }
+      _rand = (_rand + 1) % this.item_data.length;
     }
     this.$body.velocity({
       backgroundColor: this.item_data[_rand].color
@@ -106,9 +126,10 @@ Main = (function() {
           _this.$result_price.velocity({
             opacity: 1
           }, DUR);
-          return _this.$result_item.velocity({
+          _this.$result_item.velocity({
             opacity: 1
           }, DUR);
+          return _this.item_data.splice(_rand, 1);
         };
       })(this)
     });

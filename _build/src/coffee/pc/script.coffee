@@ -19,7 +19,9 @@ class Main
         @$result_formula_unit = $(".result_formula_unit")
         @$footer = $(".footer")
 
-        @item_data = require("../../json/item.json").items
+        @item_data_copy = require("../../json/item.json").items
+        @item_data = []
+        @setItemData()
 
         @firstview_step = 0
 
@@ -30,14 +32,26 @@ class Main
 
         @exec()
 
+    setItemData: ->
+        for i in [0...@item_data_copy.length]
+            @item_data[i] = @item_data_copy[i]
+
     showResult: (price) ->
         @$body.prop(scrollTop: 0).addClass "show_result"
 
+        @setItemData() if @item_data.length == 0
         _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
         while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 1)
+            if _count++ > @item_data.length - 1
+                if @item_data.length < @item_data_copy.length # data listが削られていた場合、元に戻してやり直す
+                    @setItemData()
+                    _rand = Math.floor(Math.random() * @item_data.length)
+                    _count = 0
+                else # 全てのdata listから当てはまるアイテムがないときは、諦める
+                    break
+
             _rand = (_rand + 1) % @item_data.length
-            break if _count++ > 10
 
         @$body.velocity backgroundColor: @item_data[_rand].color, DUR
         @$result_item_hide.velocity backgroundColor: @item_data[_rand].color, DUR
@@ -107,6 +121,8 @@ class Main
                 @$result_item_big.velocity opacity: 0, DUR
                 @$result_price.velocity opacity: 1, DUR
                 @$result_item.velocity opacity: 1, DUR
+
+                @item_data.splice _rand, 1 # 一度出したアイテムは繰り返さないように
         )
 
     backFirstviewStep: -> @firstview_step--
