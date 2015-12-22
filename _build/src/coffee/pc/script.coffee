@@ -80,7 +80,10 @@ class Main
             backgroundImage: "url(./img/item/#{@item_data[_rand].name}.png)"
         )
 
-        @$result_formula_amount_name.text @item_data[_rand].name_jp
+        @$result_formula_amount_name.removeAttr("style").text @item_data[_rand].name_jp
+
+        while @$result_formula_amount_name.height() > parseInt(@$result_formula_amount_name.css("font-size")) * 2
+            @$result_formula_amount_name.css "font-size": parseInt(@$result_formula_amount_name.css("font-size")) - 1
 
         @$result_formula_amount_txt.text(
             String(Math.floor(price / @item_data[_rand].price)).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"

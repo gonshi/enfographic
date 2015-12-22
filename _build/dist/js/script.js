@@ -95,7 +95,12 @@ Main = (function() {
     this.$result_formula_amount_icon.css({
       backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
     });
-    this.$result_formula_amount_name.text(this.item_data[_rand].name_jp);
+    this.$result_formula_amount_name.removeAttr("style").text(this.item_data[_rand].name_jp);
+    while (this.$result_formula_amount_name.height() > parseInt(this.$result_formula_amount_name.css("font-size")) * 2) {
+      this.$result_formula_amount_name.css({
+        "font-size": parseInt(this.$result_formula_amount_name.css("font-size")) - 1
+      });
+    }
     this.$result_formula_amount_txt.text(String(Math.floor(price / this.item_data[_rand].price)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.removeAttr("style").css({
@@ -295,10 +300,10 @@ module.exports={
         },
         {
             name: "travel",
-            name_jp: "世界",
+            name_jp: "世界一周",
             color: "white",
             background: "#FECB2F",
-            unit: "周",
+            unit: "回",
             price: 1000000
         },
         {
