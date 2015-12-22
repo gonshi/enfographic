@@ -35,7 +35,7 @@
         {
             name: "macbook",
             name_jp: "MacbookPro",
-            color: "white",
+            color: "black",
             background: "#E0E1E1",
             unit: "台",
             price: 148800

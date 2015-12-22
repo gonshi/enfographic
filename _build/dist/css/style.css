@@ -527,6 +527,9 @@ body.show_result .footer {
   display: none;
   padding: 1px 0;
 }
+.result[data-color="black"] .result_item_info {
+  color: #000;
+}
 .result[data-color="black"] .result_price_yen {
   background-image: url(../img/index.png);
   background-position: -56px -447px;
@@ -592,6 +595,16 @@ body.show_result .footer {
   height: 900px;
   margin: 0 auto;
   background-size: 104px 104px;
+  opacity: 0;
+}
+
+.result_item_info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
   opacity: 0;
 }
 

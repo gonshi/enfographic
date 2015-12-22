@@ -10,6 +10,7 @@ class Main
         @$result_price = $(".result_price")
         @$result_price_num = $(".result_price_num")
         @$result_item = $(".result_item")
+        @$result_item_info = $(".result_item_info")
         @$result_item_big = $(".result_item_big")
         @$result_item_hide = $(".result_item_hide")
         @$result_formula = $(".result_formula")
@@ -84,6 +85,7 @@ class Main
 
         @$result_formula_amount_name.removeAttr("style").text @item_data[_rand].name_jp
 
+        # フォントサイズ調整
         while @$result_formula_amount_name.height() > parseInt(@$result_formula_amount_name.css("font-size")) * 2
             @$result_formula_amount_name.css "font-size": parseInt(@$result_formula_amount_name.css("font-size")) - 1
 
@@ -99,8 +101,29 @@ class Main
 
         @$result_item.css opacity: 0
 
+        _result_item_big_ratio = Math.min(@$win.height() * 0.7 / @$result_item_big.height(), 1)
+        @$result_item_info.css(
+            top: @$win.height() / 2
+            marginTop: _result_item_big_ratio * @$result_item_big.height() / 2
+        ).
+        text(
+            "#{@item_data[_rand].name_jp} / " +
+            "#{String(@item_data[_rand].price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"}円"
+        ).
+        velocity(
+            opacity: [1, 0]
+        ,
+            duration: DUR
+            delay: DUR * 2
+        ).velocity(
+            opacity: [0, 1]
+        ,
+            duration: DUR
+            delay: DUR * 2
+        )
+
         @$result_item_big.velocity(
-            scale: [1, 0]
+            scale: [_result_item_big_ratio, 0]
             opacity: [1, 0]
         ,
             duration: DUR * 1.5

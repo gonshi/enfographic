@@ -169,6 +169,7 @@ Main = (function() {
     this.$result_price = $(".result_price");
     this.$result_price_num = $(".result_price_num");
     this.$result_item = $(".result_item");
+    this.$result_item_info = $(".result_item_info");
     this.$result_item_big = $(".result_item_big");
     this.$result_item_hide = $(".result_item_hide");
     this.$result_formula = $(".result_formula");
@@ -202,7 +203,7 @@ Main = (function() {
   };
 
   Main.prototype.showResult = function(price) {
-    var _count, _rand, _separated_price;
+    var _count, _rand, _result_item_big_ratio, _separated_price;
     this.$body.prop({
       scrollTop: 0
     }).addClass("show_result");
@@ -266,8 +267,23 @@ Main = (function() {
     this.$result_item.css({
       opacity: 0
     });
+    _result_item_big_ratio = Math.min(this.$win.height() * 0.7 / this.$result_item_big.height(), 1);
+    this.$result_item_info.css({
+      top: this.$win.height() / 2,
+      marginTop: _result_item_big_ratio * this.$result_item_big.height() / 2
+    }).text((this.item_data[_rand].name_jp + " / ") + ((String(this.item_data[_rand].price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")) + "円")).velocity({
+      opacity: [1, 0]
+    }, {
+      duration: DUR,
+      delay: DUR * 2
+    }).velocity({
+      opacity: [0, 1]
+    }, {
+      duration: DUR,
+      delay: DUR * 2
+    });
     return this.$result_item_big.velocity({
-      scale: [1, 0],
+      scale: [_result_item_big_ratio, 0],
       opacity: [1, 0]
     }, {
       duration: DUR * 1.5,
@@ -434,7 +450,7 @@ module.exports={
         {
             name: "macbook",
             name_jp: "MacbookPro",
-            color: "white",
+            color: "black",
             background: "#E0E1E1",
             unit: "台",
             price: 148800

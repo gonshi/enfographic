@@ -213,6 +213,10 @@ body{
     padding: 1px 0;
 
     &[data-color="black"]{
+        .result_item_info{
+            color: #000;
+        }
+
         .result_price_yen{
             @include sprite($index_yen-black);
         }
@@ -271,6 +275,14 @@ $result_item_width: 1040px;
     height: 900px;
     margin: 0 auto;
     background-size: $result_item_width / 10 $result_item_width / 10;
+    opacity: 0;
+}
+
+.result_item_info{
+    @include absolute('', 0, '', 0);
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
     opacity: 0;
 }
 
