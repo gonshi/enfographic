@@ -108,8 +108,8 @@ class Main
             marginTop: _result_item_big_ratio * @$result_item_big.height() / 2
         ).
         text(
-            "#{@item_data[_rand].name_jp} / " +
-            "#{String(@item_data[_rand].price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"}円"
+            "#{@item_data[_rand].name_jp}" +
+            " (#{String(@item_data[_rand].price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"}円)"
         ).
         velocity(
             opacity: [1, 0]

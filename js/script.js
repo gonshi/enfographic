@@ -274,7 +274,7 @@ Main = (function() {
     this.$result_item_info.css({
       top: this.$win.height() / 2,
       marginTop: _result_item_big_ratio * this.$result_item_big.height() / 2
-    }).text((this.item_data[_rand].name_jp + " / ") + ((String(this.item_data[_rand].price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")) + "円")).velocity({
+    }).text(("" + this.item_data[_rand].name_jp) + (" (" + (String(this.item_data[_rand].price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")) + "円)")).velocity({
       opacity: [1, 0]
     }, {
       duration: DUR,
