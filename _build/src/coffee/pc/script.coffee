@@ -28,6 +28,8 @@ class Main
 
         @MAX_LENGTH = 10
 
+        @social = require("./module/social")()
+
         for i in [0...$(".firstview").size()]
             @$firstview.push $(".firstview").filter("[data-id=\"#{i + 1}\"]")
         window.DUR = 500
@@ -193,5 +195,7 @@ class Main
             @introHandler @firstview_step++
         else
             @$firstview[0].show().velocity opacity: 1
+
+        @social.exec "fb", "tweet"
 
 new Main()

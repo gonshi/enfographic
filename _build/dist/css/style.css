@@ -305,6 +305,24 @@ body.show_result .header .header_ttl a {
   text-indent: 110%;
 }
 
+.header_social {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  width: 200px;
+}
+
+.header_social_inner {
+  width: 100px;
+}
+.header_social_inner.fb-like {
+  float: left;
+}
+.header_social_inner.tweet {
+  float: right;
+  text-align: right;
+}
+
 .contents {
   position: relative;
   height: 100vh;

@@ -33,6 +33,24 @@ body{
     }
 }
 
+.header_social{
+    @include absolute(30px, 50px, '', '');
+    width: 200px;
+}
+
+.header_social_inner{
+    width: 100px;
+
+    &.fb-like{
+        float: left;
+    }
+
+    &.tweet{
+        float: right;
+        text-align: right;
+    }
+}
+
 .contents{
     position: relative;
     height: 100vh;
