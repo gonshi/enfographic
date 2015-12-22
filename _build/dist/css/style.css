@@ -324,6 +324,18 @@ body.show_result .contents {
 body.show_result .footer {
   display: block;
 }
+.footer[data-color="black"] .footer_again {
+  background-image: url(../img/index.png);
+  background-position: -447px -231px;
+  width: 280px;
+  height: 57px;
+}
+.footer[data-color="black"] .footer_another {
+  background-image: url(../img/index.png);
+  background-position: -447px -292px;
+  width: 280px;
+  height: 57px;
+}
 
 .footer_inner {
   display: inline-block;
@@ -343,22 +355,10 @@ body.show_result .footer {
   width: 280px;
   height: 57px;
 }
-.footer_again[data-color="black"] {
-  background-image: url(../img/index.png);
-  background-position: -447px -231px;
-  width: 280px;
-  height: 57px;
-}
 
 .footer_another {
   background-image: url(../img/index.png);
   background-position: -731px -170px;
-  width: 280px;
-  height: 57px;
-}
-.footer_another[data-color="black"] {
-  background-image: url(../img/index.png);
-  background-position: -447px -292px;
   width: 280px;
   height: 57px;
 }
@@ -509,6 +509,30 @@ body.show_result .footer {
   display: none;
   padding: 1px 0;
 }
+.result[data-color="black"] .result_price_yen {
+  background-image: url(../img/index.png);
+  background-position: -56px -447px;
+  width: 45px;
+  height: 52px;
+}
+.result[data-color="black"] .result_formula_yen {
+  background-image: url(../img/index.png);
+  background-position: -56px -447px;
+  width: 45px;
+  height: 52px;
+}
+.result[data-color="black"] .result_price_num {
+  color: #000;
+}
+.result[data-color="black"] .result_formula {
+  color: #000;
+}
+.result[data-color="black"] .result_price:after {
+  background-image: url(../img/index.png);
+  background-position: -1015px -231px;
+  width: 25px;
+  height: 45px;
+}
 
 .result_price {
   line-height: 1em;
@@ -539,9 +563,9 @@ body.show_result .footer {
 }
 
 .result_price_num {
-  color: #fff;
   font-size: 108px;
   font-family: 'Roboto Slab', serif;
+  color: #fff;
 }
 
 .result_item {
@@ -577,8 +601,8 @@ body.show_result .footer {
   margin: 200px auto 0;
   padding-bottom: 100px;
   border-bottom: 1px solid #fff;
-  color: #fff;
   text-align: center;
+  color: #fff;
 }
 
 .result_formula_inner {

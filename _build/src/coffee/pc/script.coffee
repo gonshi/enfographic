@@ -12,6 +12,7 @@ class Main
         @$result_item = $(".result_item")
         @$result_item_big = $(".result_item_big")
         @$result_item_hide = $(".result_item_hide")
+        @$result_formula = $(".result_formula")
         @$result_formula_price = $(".result_formula_price")
         @$result_formula_amount_icon = $(".result_formula_amount_icon")
         @$result_formula_amount_txt = $(".result_formula_amount_txt")
@@ -53,8 +54,10 @@ class Main
 
             _rand = (_rand + 1) % @item_data.length
 
-        @$body.velocity backgroundColor: @item_data[_rand].color, DUR
-        @$result_item_hide.velocity backgroundColor: @item_data[_rand].color, DUR
+        @$body.velocity backgroundColor: @item_data[_rand].background, DUR
+        @$result_item_hide.velocity backgroundColor: @item_data[_rand].background, DUR
+        @$result.attr "data-color": @item_data[_rand].color
+        @$footer.attr "data-color": @item_data[_rand].color
 
         # 結果表示
         @$result.show().attr "data-id": @item_data[_rand].name

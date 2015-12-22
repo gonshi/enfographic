@@ -16,6 +16,7 @@ Main = (function() {
     this.$result_item = $(".result_item");
     this.$result_item_big = $(".result_item_big");
     this.$result_item_hide = $(".result_item_hide");
+    this.$result_formula = $(".result_formula");
     this.$result_formula_price = $(".result_formula_price");
     this.$result_formula_amount_icon = $(".result_formula_amount_icon");
     this.$result_formula_amount_txt = $(".result_formula_amount_txt");
@@ -66,11 +67,17 @@ Main = (function() {
       _rand = (_rand + 1) % this.item_data.length;
     }
     this.$body.velocity({
-      backgroundColor: this.item_data[_rand].color
+      backgroundColor: this.item_data[_rand].background
     }, DUR);
     this.$result_item_hide.velocity({
-      backgroundColor: this.item_data[_rand].color
+      backgroundColor: this.item_data[_rand].background
     }, DUR);
+    this.$result.attr({
+      "data-color": this.item_data[_rand].color
+    });
+    this.$footer.attr({
+      "data-color": this.item_data[_rand].color
+    });
     this.$result.show().attr({
       "data-id": this.item_data[_rand].name
     });
@@ -229,63 +236,72 @@ module.exports={
         {
             name: "beer",
             name_jp: "生ビール",
-            color: "#F63831",
+            color: "white",
+            background: "#F63831",
             unit: "杯",
             price: 540
         },
         {
             name: "benz",
             name_jp: "ベンツ",
-            color: "#1C1C1C",
+            color: "white",
+            background: "#1C1C1C",
             unit: "台",
             price: 5000000
         },
         {
             name: "disney",
             name_jp: "夢の国ペアチケット",
-            color: "#FC8AB6",
+            color: "white",
+            background: "#FC8AB6",
             unit: "組",
             price: 17000
         },
         {
             name: "hills",
             name_jp: "六本木ヒルズの家賃",
-            color: "#4DC6F5",
+            color: "black",
+            background: "#F9F9FE",
             unit: "月",
             price: 3240000
         },
         {
             name: "macbook",
             name_jp: "MacbookPro",
-            color: "#E0E1E1",
+            color: "white",
+            background: "#E0E1E1",
             unit: "台",
             price: 148800
         },
         {
             name: "pazdra",
             name_jp: "魔法石",
-            color: "#502517",
+            color: "white",
+            background: "#502517",
             unit: "個",
             price: 120
         },
         {
             name: "rice",
             name_jp: "お米",
-            color: "#519BAC",
+            color: "white",
+            background: "#519BAC",
             unit: "杯",
             price: 40
         },
         {
             name: "travel",
             name_jp: "世界",
-            color: "#FECB2F",
+            color: "white",
+            background: "#FECB2F",
             unit: "周",
             price: 1000000
         },
         {
             name: "vuitton",
             name_jp: "ヴィトンの財布",
-            color: "#D9A637",
+            color: "white",
+            background: "#D9A637",
             unit: "個",
             price: 90000
         }

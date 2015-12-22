@@ -53,6 +53,16 @@ body{
     @include show_result{
         display: block;
     }
+
+    &[data-color="black"]{
+        .footer_again{
+            @include sprite($index_again-black);
+        }
+
+        .footer_another{
+            @include sprite($index_another-black);
+        }
+    }
 }
 
 .footer_inner{
@@ -68,18 +78,10 @@ body{
 
 .footer_again{
     @include sprite($index_again-white);
-
-    &[data-color="black"]{
-        @include sprite($index_again-black);
-    }
 }
 
 .footer_another{
     @include sprite($index_another-white);
-
-    &[data-color="black"]{
-        @include sprite($index_another-black);
-    }
 }
 
 .footer_copyright{
@@ -139,7 +141,7 @@ body{
 
             &:before{
                 @include absolute('', '', 15px, 15px);
-                @include sprite($index_yen);
+                @include sprite($index_yen-black);
                 content: "";
             }
         }
@@ -191,6 +193,30 @@ body{
 .result{
     display: none;
     padding: 1px 0;
+
+    &[data-color="black"]{
+        .result_price_yen{
+            @include sprite($index_yen-black);
+        }
+
+        .result_formula_yen{
+            @include sprite($index_yen-black);
+        }
+
+        .result_price_num{
+            color: #000;
+        }
+
+        .result_formula{
+            color: #000;
+        }
+
+        .result_price{
+            &:after{
+                @include sprite($index_equal-black);
+            }
+        }
+    }
 }
 
 .result_price{
@@ -201,7 +227,7 @@ body{
 
     &:after{
         display: block;
-        @include sprite($index_equal);
+        @include sprite($index_equal-white);
         @include hide-text();
         margin: 80px auto;
         content: "";
@@ -210,14 +236,14 @@ body{
 
 .result_price_yen{
     display: inline-block;
-    @include sprite($index_yen-2);
+    @include sprite($index_yen-white);
     margin-right: 15px;
 }
 
 .result_price_num{
-    color: #fff;
     font-size: 108px;
     font-family: 'Roboto Slab', serif;
+    color: #fff;
 }
 
 $result_item_width: 1040px;
@@ -251,8 +277,8 @@ $result_item_width: 1040px;
     margin: 200px auto 0;
     padding-bottom: 100px;
     border-bottom: 1px solid #fff;
-    color: #fff;
     text-align: center;
+    color: #fff;
 }
 
 .result_formula_inner{
@@ -260,7 +286,7 @@ $result_item_width: 1040px;
 }
 
 .result_formula_yen{
-    @include sprite($index_yen-2);
+    @include sprite($index_yen-white);
     margin-right: 15px;
 }
 
