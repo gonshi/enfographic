@@ -22,6 +22,16 @@ body{
             }
         }
     }
+
+    &[data-color="black"]{
+        @include show_result{
+            .header_ttl{
+                a{
+                    @include sprite($index_logo-black);
+                }
+            }
+        }
+    }
 }
 
 .header_ttl{

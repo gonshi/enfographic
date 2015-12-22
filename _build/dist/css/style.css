@@ -286,6 +286,12 @@ body {
 body.show_result .header .header_ttl a {
   display: block;
   background-image: url(../img/index.png);
+  background-position: -595px -353px;
+  width: 144px;
+  height: 40px;
+}
+body.show_result .header[data-color="black"] .header_ttl a {
+  background-image: url(../img/index.png);
   background-position: -447px -353px;
   width: 144px;
   height: 40px;
@@ -297,7 +303,7 @@ body.show_result .header .header_ttl a {
   top: 40px;
   left: 60px;
   background-image: url(../img/index.png);
-  background-position: -595px -353px;
+  background-position: -743px -353px;
   width: 144px;
   height: 40px;
   overflow: hidden;
@@ -383,7 +389,7 @@ body.show_result .footer {
 
 .footer_copyright {
   background-image: url(../img/index.png);
-  background-position: -743px -353px;
+  background-position: -891px -353px;
   width: 156px;
   height: 12px;
   overflow: hidden;

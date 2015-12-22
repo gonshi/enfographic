@@ -62,6 +62,7 @@ class Main
         @$body.velocity backgroundColor: @item_data[_rand].background, DUR
         @$result_item_hide.velocity backgroundColor: @item_data[_rand].background, DUR
         @$result.attr "data-color": @item_data[_rand].color
+        @$header.attr "data-color": @item_data[_rand].color
         @$footer.attr "data-color": @item_data[_rand].color
 
         # 結果表示
@@ -119,7 +120,7 @@ class Main
             opacity: [0, 1]
         ,
             duration: DUR
-            delay: DUR * 2
+            delay: DUR * 4
         )
 
         @$result_item_big.velocity(
@@ -138,7 +139,7 @@ class Main
             scale: [1, _result_item_big_ratio]
         ,
             duration: DUR * 1.5
-            delay: DUR * 2
+            delay: DUR * 5
             complete: =>
                 # (@$result_item.width() / 10) はアイテム1個あたりの画像幅
                 @$result_item.height(

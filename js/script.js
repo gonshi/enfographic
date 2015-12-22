@@ -233,6 +233,9 @@ Main = (function() {
     this.$result.attr({
       "data-color": this.item_data[_rand].color
     });
+    this.$header.attr({
+      "data-color": this.item_data[_rand].color
+    });
     this.$footer.attr({
       "data-color": this.item_data[_rand].color
     });
@@ -280,7 +283,7 @@ Main = (function() {
       opacity: [0, 1]
     }, {
       duration: DUR,
-      delay: DUR * 2
+      delay: DUR * 4
     });
     return this.$result_item_big.velocity({
       scale: [_result_item_big_ratio, 0],
@@ -297,7 +300,7 @@ Main = (function() {
       scale: [1, _result_item_big_ratio]
     }, {
       duration: DUR * 1.5,
-      delay: DUR * 2,
+      delay: DUR * 5,
       complete: (function(_this) {
         return function() {
           _this.$result_item.height(Math.ceil(Math.floor(price / _this.item_data[_rand].price) / 10) * (_this.$result_item.width() / 10));
