@@ -91,7 +91,7 @@ Social = (function() {
       return FB.ui({
         method: "feed",
         link: _$social.attr("data-url"),
-        picture: (_$social.attr("data-url")) + "share/" + (_$social.attr("data-id")) + ".png",
+        picture: (_$social.attr("data-url")) + "img/share/" + (_$social.attr("data-id")) + ".png",
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
     });
