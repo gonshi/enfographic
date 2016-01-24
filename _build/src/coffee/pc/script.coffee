@@ -198,6 +198,12 @@ class Main
                     @$firstview[1].hide()
                     @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val())
 
+    preload: ->
+        _$img = []
+        for i in [0...@item_data.length]
+            _$img[i] = $("<img>")
+            _$img[i].get(0).src = "img/item/#{@item_data[i].name}.png"
+
     exec: ->
         ###########################
         #   EVENT LISTENER
@@ -239,5 +245,6 @@ class Main
             @$firstview[0].show().velocity opacity: 1
 
         @social.exec "fb", "tweet"
+        @preload()
 
 new Main()

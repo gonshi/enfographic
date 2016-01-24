@@ -394,6 +394,17 @@ Main = (function() {
     }
   };
 
+  Main.prototype.preload = function() {
+    var _$img, i, j, ref, results;
+    _$img = [];
+    results = [];
+    for (i = j = 0, ref = this.item_data.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+      _$img[i] = $("<img>");
+      results.push(_$img[i].get(0).src = "img/item/" + this.item_data[i].name + ".png");
+    }
+    return results;
+  };
+
   Main.prototype.exec = function() {
     this.$firstview_start.on("click", (function(_this) {
       return function() {
@@ -439,7 +450,8 @@ Main = (function() {
         opacity: 1
       });
     }
-    return this.social.exec("fb", "tweet");
+    this.social.exec("fb", "tweet");
+    return this.preload();
   };
 
   return Main;
