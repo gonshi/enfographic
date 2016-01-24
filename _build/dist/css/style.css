@@ -835,6 +835,9 @@ body.is_sp .contents .firstview[data-id="1"] .firstview_start {
   width: 480px;
   height: 96px;
 }
+body.is_sp .contents .firstview[data-id="2"] {
+  overflow: hidden;
+}
 body.is_sp .contents .firstview[data-id="2"] .firstview_subttl {
   width: 640px;
   margin: auto;

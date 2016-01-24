@@ -258,6 +258,8 @@ class Main
                 "maximum-scale=1.6, user-scalable=no"
             )
 
+            @$firstview[1].find(".firstview_input").css paddingRight: 40
+
         if location.search.match "skip"
             @introHandler @firstview_step++
         else

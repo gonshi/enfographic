@@ -466,6 +466,9 @@ Main = (function() {
     }
     if ($.browser.iphone || $.browser.ipod || $.browser.ipad) {
       document.querySelector('meta[name="viewport"]').setAttribute("content", ("width=" + VIEWPORT + ", minimum-scale=0.25, ") + "maximum-scale=1.6, user-scalable=no");
+      this.$firstview[1].find(".firstview_input").css({
+        paddingRight: 40
+      });
     }
     if (location.search.match("skip")) {
       this.introHandler(this.firstview_step++);

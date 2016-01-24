@@ -484,6 +484,8 @@ $item_row_length: 10;
             }
 
             &[data-id="2"]{
+                overflow: hidden;
+
                 .firstview_subttl{
                     width: 640px;
                     margin: auto;
