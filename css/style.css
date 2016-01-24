@@ -694,6 +694,275 @@ body.show_result .footer {
   margin-left: 10px;
 }
 
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+body.is_sp .header .header_ttl {
+  display: none;
+}
+body.is_sp .header .header_ttl a {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+body.is_sp .header .header_social {
+  position: absolute;
+  top: calc(50vh + 380px);
+  left: 50%;
+  right: auto;
+  width: 400px;
+  height: 40px;
+  margin-left: -200px;
+}
+body.is_sp .header .header_social_inner.fb-like {
+  width: 200px;
+}
+body.is_sp .header .header_social_inner.fb-like span {
+  -webkit-transform-origin: left top;
+      -ms-transform-origin: left top;
+          transform-origin: left top;
+  -webkit-transform: scale(2);
+      -ms-transform: scale(2);
+          transform: scale(2);
+}
+body.is_sp .header .header_social_inner.tweet {
+  float: left;
+  width: 150px;
+  text-align: left;
+  margin-left: 50px;
+}
+body.is_sp .header .header_social_inner.tweet iframe {
+  -webkit-transform-origin: left top;
+      -ms-transform-origin: left top;
+          transform-origin: left top;
+  -webkit-transform: scale(2);
+      -ms-transform: scale(2);
+          transform: scale(2);
+}
+body.is_sp.show_result .header .header_ttl {
+  display: block;
+}
+body.is_sp.show_result .header .header_ttl a {
+  background-image: url(../img/index-sp.png);
+  background-position: -991px -224px;
+  width: 144px;
+  height: 40px;
+}
+body.is_sp.show_result .header[data-color="black"] .header_ttl a {
+  background-image: url(../img/index-sp.png);
+  background-position: -991px -180px;
+  width: 144px;
+  height: 40px;
+}
+
+body.is_sp .contents {
+  min-height: 0px;
+}
+body.is_sp .contents .firstview[data-id="1"] .firstview_ttl {
+  background-image: url(../img/index-sp.png);
+  background-position: -507px 0px;
+  width: 652px;
+  height: 176px;
+  -webkit-transform: translateY(-290px);
+      -ms-transform: translateY(-290px);
+          transform: translateY(-290px);
+}
+body.is_sp .contents .firstview[data-id="1"] .firstview_txt {
+  width: 640px;
+  font-size: 32px;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+}
+body.is_sp .contents .firstview[data-id="1"] .firstview_start {
+  background-image: url(../img/index-sp.png);
+  background-position: 0px -509px;
+  width: 480px;
+  height: 96px;
+}
+body.is_sp .contents .firstview[data-id="2"] .firstview_subttl {
+  width: 640px;
+  margin: auto;
+  text-align: left;
+  font-size: 32px;
+  -webkit-transform: translateY(-220px);
+      -ms-transform: translateY(-220px);
+          transform: translateY(-220px);
+}
+body.is_sp .contents .firstview[data-id="2"] .firstview_input {
+  width: 640px;
+  font-size: 80px;
+  -webkit-transform: translateY(-100px);
+      -ms-transform: translateY(-100px);
+          transform: translateY(-100px);
+}
+body.is_sp .contents .firstview[data-id="2"] .firstview_input:before {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-image: url(../img/index-sp.png);
+  background-position: -991px -280px;
+  width: 42px;
+  height: 48px;
+  content: "";
+}
+body.is_sp .contents .firstview[data-id="2"] .firstview_start {
+  background-image: url(../img/index-sp.png);
+  background-position: -484px -509px;
+  width: 480px;
+  height: 96px;
+  -webkit-transform: translateY(100px);
+      -ms-transform: translateY(100px);
+          transform: translateY(100px);
+}
+body.is_sp .contents .firstview_start {
+  -webkit-transform: translateY(230px);
+      -ms-transform: translateY(230px);
+          transform: translateY(230px);
+}
+body.is_sp .contents .firstview_start:hover {
+  opacity: 1;
+}
+body.is_sp .contents .firstview_logo-big {
+  background-image: url(../img/index-sp.png);
+  background-position: 0px 0px;
+  width: 503px;
+  height: 505px;
+  -webkit-transform: translateY(-190px);
+      -ms-transform: translateY(-190px);
+          transform: translateY(-190px);
+}
+body.is_sp .contents .result[data-color="black"] .result_price_yen {
+  background-image: url(../img/index-sp.png);
+  background-position: -991px -280px;
+  width: 42px;
+  height: 48px;
+}
+body.is_sp .contents .result[data-color="black"] .result_formula_yen {
+  background-image: url(../img/index-sp.png);
+  background-position: -991px -280px;
+  width: 42px;
+  height: 48px;
+}
+body.is_sp .contents .result[data-color="black"] .result_price:after {
+  background-image: url(../img/index-sp.png);
+  background-position: -1139px -224px;
+  width: 17px;
+  height: 32px;
+}
+body.is_sp .contents .result_price:after {
+  background-image: url(../img/index-sp.png);
+  background-position: -1139px -180px;
+  width: 17px;
+  height: 32px;
+  margin: 50px auto;
+}
+body.is_sp .contents .result_price_yen {
+  background-image: url(../img/index-sp.png);
+  background-position: -1037px -280px;
+  width: 42px;
+  height: 48px;
+}
+body.is_sp .contents .result_item {
+  width: 693px;
+  background-size: 99px 99px;
+}
+body.is_sp .contents .result_item_hide {
+  height: 99px;
+}
+body.is_sp .contents .result_formula {
+  width: 693px;
+  margin: 60px auto 0;
+}
+body.is_sp .contents .result_formula_price,
+body.is_sp .contents .result_formula_equal,
+body.is_sp .contents .result_formula_amount {
+  font-size: 64px;
+}
+body.is_sp .contents .result_formula_amount_icon {
+  position: absolute;
+  top: -5px;
+  left: -98px;
+}
+body.is_sp .contents .result_formula_amount_name {
+  position: absolute;
+  bottom: -30px;
+  left: -103px;
+  width: 100px;
+  font-size: 18px;
+}
+body.is_sp .contents .result_formula_yen {
+  background-image: url(../img/index-sp.png);
+  background-position: -1037px -280px;
+  width: 42px;
+  height: 48px;
+}
+
+body.is_sp .footer[data-color="black"] .footer_again {
+  background-image: url(../img/index-sp.png);
+  background-position: -507px -380px;
+  width: 480px;
+  height: 96px;
+}
+body.is_sp .footer[data-color="black"] .footer_another {
+  background-image: url(../img/index-sp.png);
+  background-position: -507px -180px;
+  width: 480px;
+  height: 96px;
+}
+body.is_sp .footer .footer_inner:hover {
+  opacity: 1;
+}
+body.is_sp .footer .footer_again {
+  background-image: url(../img/index-sp.png);
+  background-position: 0px -609px;
+  width: 480px;
+  height: 96px;
+  margin-top: 20px;
+}
+body.is_sp .footer .footer_another {
+  background-image: url(../img/index-sp.png);
+  background-position: -507px -280px;
+  width: 480px;
+  height: 96px;
+}
+body.is_sp .footer .footer_copyright {
+  background-image: url(../img/index.png);
+  background-position: -891px -353px;
+  width: 156px;
+  height: 12px;
+}
+body.is_sp.show_result .footer {
+  display: block;
+}
+
 @media print {
   * {
     background: transparent !important;
