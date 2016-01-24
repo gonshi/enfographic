@@ -77,12 +77,17 @@ class Social
 
         # fb-share
         $(document).on "click", ".facebook", (e) ->
+            _$social = $(e.target).parent()
             FB.ui
-                method: "share"
-                href: $(e.target).attr "data-url"
+                method: "feed"
+                link: _$social.attr "data-url"
+                picture: "#{_$social.attr "data-url"}share/#{_$social.attr "data-id"}.png"
+                description: "#{_$social.attr "data-price"}円は、#{_$social.attr "data-name"}" +
+                             "で換算すると#{_$social.attr "data-amount"}#{_$social.attr "data-unit"}です。"
 
         # tweet
-        $(document).on "click", ".tweet a", (e) ->
+        $(document).on "click", ".tweet", (e) ->
+            _$social = $(e.target).parent()
             e.preventDefault()
 
             if window.screenLeft?
@@ -108,7 +113,13 @@ class Social
             _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft
             _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop
 
-            window.open $(e.currentTarget).attr("href"), "twitter",
+            _txt = "#{_$social.attr "data-price"}円は、#{_$social.attr "data-name"}" +
+                   "で換算すると#{_$social.attr "data-amount"}#{_$social.attr "data-unit"}です。"
+            _url = "#{_$social.attr "data-url"}share/#{_$social.attr "data-id"}.html"
+
+            _href = "http://twitter.com/share?url=#{_url}&text=#{encodeURIComponent(_txt)}"
+
+            window.open _href, "twitter",
                         "width=#{_popupWidth}, height=#{_popupHeight}, " +
                         "top=#{_top}, left=#{_left}"
 

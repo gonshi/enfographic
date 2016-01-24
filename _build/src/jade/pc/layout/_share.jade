@@ -1,0 +1,26 @@
+doctype html
+html(lang="ja")
+  block id
+    - var id = "beer";
+  head(prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml")
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=#{viewport}, minimum-scale=#{320 / viewport}, maximum-scale=#{320 / viewport}, user-scalable=yes")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title= title
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+    meta(property="og:title" content=title)
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="#{url}share/#{id}.html")
+    meta(property="og:image" content="#{url}img/share/#{id}.png")
+    meta(property="og:site_name" content=title)
+    meta(property="og:description" content=description)
+    meta(property="fb:app_id" content=fb_app_id)
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content=title)
+    meta(name="twitter:description" content=description)
+    meta(name="twitter:image:src" content="#{url}img/share/#{id}.png")
+    link(rel="shortcut icon" href="/favicon.ico")
+  body
+    script.
+      location.replace("#{url}");

@@ -86,13 +86,18 @@ Social = (function() {
       }
     }
     $(document).on("click", ".facebook", function(e) {
+      var _$social;
+      _$social = $(e.target).parent();
       return FB.ui({
-        method: "share",
-        href: $(e.target).attr("data-url")
+        method: "feed",
+        link: _$social.attr("data-url"),
+        picture: (_$social.attr("data-url")) + "share/" + (_$social.attr("data-id")) + ".png",
+        description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
     });
-    $(document).on("click", ".tweet a", function(e) {
-      var _dualScreenLeft, _dualScreenTop, _left, _popupHeight, _popupWidth, _top, _windowHeight, _windowWidth, ref1;
+    $(document).on("click", ".tweet", function(e) {
+      var _$social, _dualScreenLeft, _dualScreenTop, _href, _left, _popupHeight, _popupWidth, _top, _txt, _url, _windowHeight, _windowWidth, ref1;
+      _$social = $(e.target).parent();
       e.preventDefault();
       if (window.screenLeft != null) {
         _dualScreenLeft = window.screenLeft;
@@ -115,7 +120,10 @@ Social = (function() {
       _popupHeight = 450;
       _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft;
       _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop;
-      return window.open($(e.currentTarget).attr("href"), "twitter", ("width=" + _popupWidth + ", height=" + _popupHeight + ", ") + ("top=" + _top + ", left=" + _left));
+      _txt = ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。");
+      _url = (_$social.attr("data-url")) + "share/" + (_$social.attr("data-id")) + ".html";
+      _href = "http://twitter.com/share?url=" + _url + "&text=" + (encodeURIComponent(_txt));
+      return window.open(_href, "twitter", ("width=" + _popupWidth + ", height=" + _popupHeight + ", ") + ("top=" + _top + ", left=" + _left));
     });
     return {
       callback: function() {
@@ -179,6 +187,7 @@ Main = (function() {
     this.$result_formula_amount_name = $(".result_formula_amount_name");
     this.$result_formula_unit = $(".result_formula_unit");
     this.$footer = $(".footer");
+    this.$footer_social = $(".footer_social");
     this.item_data_copy = require("../../json/item.json").items;
     this.item_data = [];
     this.setItemData();
@@ -318,9 +327,28 @@ Main = (function() {
           _this.$result_item.velocity({
             opacity: 1
           }, DUR);
-          return _this.item_data.splice(_rand, 1);
+          _this.item_data.splice(_rand, 1);
+          return _this.setSocial();
         };
       })(this)
+    });
+  };
+
+  Main.prototype.setSocial = function() {
+    this.$footer_social.attr({
+      "data-id": this.$result.attr("data-id")
+    });
+    this.$footer_social.attr({
+      "data-name": this.$result_formula_amount_name.text()
+    });
+    this.$footer_social.attr({
+      "data-price": this.$result_formula_price.text()
+    });
+    this.$footer_social.attr({
+      "data-amount": this.$result_formula_amount_txt.text()
+    });
+    return this.$footer_social.attr({
+      "data-unit": this.$result_formula_unit.text()
     });
   };
 
@@ -333,6 +361,7 @@ Main = (function() {
       case 0:
         if (!$.browser.desktop) {
           this.$header.find(".header_social").hide();
+          this.$header.find(".header_ttl").show();
         }
         return this.$firstview[0].velocity({
           opacity: 0

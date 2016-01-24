@@ -6,16 +6,18 @@ html(lang="ja")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     title= title
     meta(name="description", content=description)
-    meta(name="keywords", content="")
+    meta(name="keywords", content=keywords)
     meta(property="og:title" content=title)
-    meta(property="og:type" content="")
-    meta(property="og:url" content="")
-    meta(property="og:image" content="")
-    meta(property="og:site_name" content="")
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="#{url}share/#{id}.html")
+    meta(property="og:image" content="#{url}img/share/#{id}.png")
+    meta(property="og:site_name" content=title)
     meta(property="og:description" content=description)
-    meta(property="fb:app_id" content="")
+    meta(property="fb:app_id" content=fb_app_id)
     meta(name="twitter:card" content="summary_large_image")
-    meta(name="twitter:site" content="")
+    meta(name="twitter:title" content=title)
+    meta(name="twitter:description" content=description)
+    meta(name="twitter:image:src" content="#{url}img/share/#{id}.png")
     link(rel="shortcut icon" href="/favicon.ico")
     link(href="css/style.css" rel="stylesheet")
     link(href='https://fonts.googleapis.com/css?family=Roboto+Slab:100' rel='stylesheet' type='text/css')
@@ -57,13 +59,14 @@ html(lang="ja")
         p.tweet.header_social_inner
           a.twitter-share-button(href="https://twitter.com/share" data-text=description data-lang="ja" data-url=url) ツイート
     footer.footer
+      div.footer_social.clearfix(data-url="#{url}")
+        p.footer_social_inner.footer_social_inner-facebook.facebook
+        p.footer_social_inner.footer_social_inner-tweet.tweet
       p.footer_inner.footer_another 別のなにかに変換する
       p.footer_inner.footer_again 金額を入れなおす
-      //p.footer_copyright ©チャリンチャリンボーイズ
     script(src="js/lib/jquery-2.1.4.min.js")
     script(src="js/lib/jquery.browser.min.js")
     script(src="js/lib/velocity.min.js")
     script(src="js/script.js")
-    //
-      script
-        include ga.js
+    script
+      include ga.js

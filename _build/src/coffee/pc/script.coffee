@@ -20,6 +20,7 @@ class Main
         @$result_formula_amount_name = $(".result_formula_amount_name")
         @$result_formula_unit = $(".result_formula_unit")
         @$footer = $(".footer")
+        @$footer_social = $(".footer_social")
 
         @item_data_copy = require("../../json/item.json").items
         @item_data = []
@@ -160,14 +161,24 @@ class Main
                 @$result_item.velocity opacity: 1, DUR
 
                 @item_data.splice _rand, 1 # 一度出したアイテムは繰り返さないように
+                @setSocial()
         )
+
+    setSocial: ->
+        @$footer_social.attr "data-id": @$result.attr "data-id"
+        @$footer_social.attr "data-name": @$result_formula_amount_name.text()
+        @$footer_social.attr "data-price": @$result_formula_price.text()
+        @$footer_social.attr "data-amount": @$result_formula_amount_txt.text()
+        @$footer_social.attr "data-unit": @$result_formula_unit.text()
 
     backFirstviewStep: -> @firstview_step--
 
     introHandler: (step) ->
         switch step
             when 0
-                @$header.find(".header_social").hide() unless $.browser.desktop
+                unless $.browser.desktop
+                    @$header.find(".header_social").hide()
+                    @$header.find(".header_ttl").show()
 
                 @$firstview[0].velocity opacity: 0, DUR, =>
                     @$firstview[0].hide()
