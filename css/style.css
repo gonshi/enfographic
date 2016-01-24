@@ -492,7 +492,7 @@ body.show_result .footer {
 .firstview[data-id="2"] .firstview_input:before {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  left: 5px;
   background-image: url(../img/index.png);
   background-position: -56px -508px;
   width: 45px;
@@ -834,6 +834,9 @@ body.is_sp .contents .firstview[data-id="1"] .firstview_start {
   background-position: 0px -509px;
   width: 480px;
   height: 96px;
+}
+body.is_sp .contents .firstview[data-id="2"] {
+  overflow: hidden;
 }
 body.is_sp .contents .firstview[data-id="2"] .firstview_subttl {
   width: 640px;

@@ -164,6 +164,16 @@ module.exports = getInstance;
 },{}],2:[function(require,module,exports){
 var Main;
 
+String.prototype.toHalf = function() {
+  return this.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+};
+
+String.prototype.separate = function() {
+  return this.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+};
+
 Main = (function() {
   function Main() {
     var i, j, ref;
@@ -258,7 +268,7 @@ Main = (function() {
     this.$result.show().attr({
       "data-id": this.item_data[_rand].name
     });
-    _separated_price = String(price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    _separated_price = String(price).separate();
     this.$result_item.css({
       height: 900,
       backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
@@ -277,7 +287,7 @@ Main = (function() {
         "font-size": parseInt(this.$result_formula_amount_name.css("font-size")) - 1
       });
     }
-    this.$result_formula_amount_txt.text(String(_amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    this.$result_formula_amount_txt.text(String(_amount).separate());
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.removeAttr("style").css({
       top: this.$win.height() / 2,
@@ -290,7 +300,7 @@ Main = (function() {
     this.$result_item_info.css({
       top: this.$win.height() / 2,
       marginTop: _result_item_big_ratio * this.$result_item_big.height() / 2
-    }).text(("" + this.item_data[_rand].name_jp) + (" (" + (String(this.item_data[_rand].price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")) + "円)")).velocity({
+    }).text(("" + this.item_data[_rand].name_jp) + (" (" + (String(this.item_data[_rand].price).separate()) + "円)")).velocity({
       opacity: [1, 0]
     }, {
       duration: DUR,
@@ -367,6 +377,7 @@ Main = (function() {
   };
 
   Main.prototype.introHandler = function(step) {
+    var _val;
     switch (step) {
       case 0:
         if (!$.browser.desktop) {
@@ -385,7 +396,8 @@ Main = (function() {
           };
         })(this));
       case 1:
-        if (isNaN(parseInt(this.$firstview[1].find(".firstview_input_inner").val()))) {
+        _val = parseInt(this.$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf());
+        if (isNaN(_val)) {
           alert("数値を適切に入力してください。");
           this.backFirstviewStep();
           return;
@@ -395,7 +407,7 @@ Main = (function() {
         }, DUR, (function(_this) {
           return function() {
             _this.$firstview[1].hide();
-            return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val()));
+            return _this.showResult(_val);
           };
         })(this));
     }
@@ -420,7 +432,7 @@ Main = (function() {
     })(this));
     this.$footer.find(".footer_another").on("click", (function(_this) {
       return function() {
-        return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val()));
+        return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf()));
       };
     })(this));
     this.$footer.find(".footer_again").on("click", function() {
@@ -451,13 +463,16 @@ Main = (function() {
       };
     })(this));
     this.$firstview[1].find(".firstview_input_inner").on("input propertychange", function() {
-      return $(this).val($(this).val().slice(0, 10));
+      return $(this).val($(this).val().replace(/,/g, "").slice(0, 10).separate());
     });
     if (!$.browser.desktop) {
       this.$body.addClass("is_sp");
     }
     if ($.browser.iphone || $.browser.ipod || $.browser.ipad) {
       document.querySelector('meta[name="viewport"]').setAttribute("content", ("width=" + VIEWPORT + ", minimum-scale=0.25, ") + "maximum-scale=1.6, user-scalable=no");
+      this.$firstview[1].find(".firstview_input").css({
+        paddingRight: 40
+      });
     }
     if (location.search.match("skip")) {
       this.introHandler(this.firstview_step++);
