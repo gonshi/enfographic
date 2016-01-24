@@ -610,6 +610,18 @@ $item_row_length: 10;
             }
         }
 
+        .footer_social{
+            width: 480px;
+        }
+
+        .footer_social_inner-facebook{
+            @include sprite($index_facebook);
+        }
+
+        .footer_social_inner-tweet{
+            @include sprite($index_tweet);
+        }
+
         .footer_inner{
             &:hover{
                 opacity: 1;

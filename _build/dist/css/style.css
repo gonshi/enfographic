@@ -967,6 +967,21 @@ body.is_sp .footer[data-color="black"] .footer_another {
   width: 480px;
   height: 96px;
 }
+body.is_sp .footer .footer_social {
+  width: 480px;
+}
+body.is_sp .footer .footer_social_inner-facebook {
+  background-image: url(../img/index-sp.png);
+  background-position: -484px -609px;
+  width: 230px;
+  height: 70px;
+}
+body.is_sp .footer .footer_social_inner-tweet {
+  background-image: url(../img/index-sp.png);
+  background-position: -718px -609px;
+  width: 230px;
+  height: 70px;
+}
 body.is_sp .footer .footer_inner:hover {
   opacity: 1;
 }
