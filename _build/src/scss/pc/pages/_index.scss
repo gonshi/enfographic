@@ -389,9 +389,10 @@ $item_row_length: 10;
         }
 
         .header_social{
-            @include absolute(50%, auto, '', 50%);
+            @include absolute(calc(50vh + 380px), auto, '', 50%);
             width: 400px;
-            margin: 380px auto auto -200px;
+            height: 40px;
+            margin-left: -200px;
         }
 
         .header_social_inner{

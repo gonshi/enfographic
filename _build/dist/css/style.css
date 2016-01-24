@@ -734,11 +734,12 @@ body.is_sp .header .header_ttl a {
 }
 body.is_sp .header .header_social {
   position: absolute;
-  top: 50%;
+  top: calc(50vh + 380px);
   left: 50%;
   right: auto;
   width: 400px;
-  margin: 380px auto auto -200px;
+  height: 40px;
+  margin-left: -200px;
 }
 body.is_sp .header .header_social_inner.fb-like {
   width: 200px;

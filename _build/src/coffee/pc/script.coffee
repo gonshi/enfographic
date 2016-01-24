@@ -143,14 +143,16 @@ class Main
             complete: =>
                 # (@$result_item.width() / @MAX_ROW_LENGTH) はアイテム1個あたりの画像幅
                 @$result_item.height(
-                    Math.ceil(Math.floor(price / @item_data[_rand].price) / @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
+                    Math.ceil(Math.floor(price / @item_data[_rand].price) / @MAX_ROW_LENGTH) *
+                    (@$result_item.width() / @MAX_ROW_LENGTH)
                 )
                 # 1桁単位の分を隠す
                 if Math.floor(price / @item_data[_rand].price) % @MAX_ROW_LENGTH == 0
                     @$result_item_hide.width 0
                 else
                     @$result_item_hide.width(
-                        (@MAX_ROW_LENGTH - Math.floor(price / @item_data[_rand].price) % @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
+                        (@MAX_ROW_LENGTH - Math.floor(price / @item_data[_rand].price) %
+                        @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
                     )
 
                 @$result_item_big.velocity opacity: 0, DUR
