@@ -1,3 +1,8 @@
+String.prototype.toHalf = ->
+    return this.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) ->
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0)
+    )
+
 class Main
     constructor: ->
         @$firstview = []
@@ -193,14 +198,15 @@ class Main
                     @$firstview[1].show().velocity opacity: 1, DUR
                     @$firstview[1].find(".firstview_input_inner").focus()
             when 1
-                if isNaN parseInt(@$firstview[1].find(".firstview_input_inner").val())
+                _val = parseInt(@$firstview[1].find(".firstview_input_inner").val().toHalf())
+                if isNaN _val
                     alert "数値を適切に入力してください。"
                     @backFirstviewStep()
                     return
 
                 @$firstview[1].velocity opacity: 0, DUR, =>
                     @$firstview[1].hide()
-                    @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val())
+                    @showResult _val
 
     preload: ->
         _$img = []
@@ -217,7 +223,7 @@ class Main
 
         # 再トライ
         @$footer.find(".footer_another").on "click", =>
-            @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val())
+            @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val().toHalf())
 
         @$footer.find(".footer_again").on "click", -> location.href = "./?skip"
 
