@@ -218,6 +218,9 @@ Main = (function() {
       scrollTop: 0
     });
     this.$body.addClass("show_result");
+    this.$result_formula.css({
+      opacity: 0
+    });
     if (this.item_data.length === 0) {
       this.setItemData();
     }
@@ -328,6 +331,9 @@ Main = (function() {
             opacity: 1
           }, DUR);
           _this.$result_item.velocity({
+            opacity: 1
+          }, DUR);
+          _this.$result_formula.velocity({
             opacity: 1
           }, DUR);
           _this.item_data.splice(_rand, 1);

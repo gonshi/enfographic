@@ -48,6 +48,8 @@ class Main
         @$base.prop(scrollTop: 0)
         @$body.addClass "show_result"
 
+        @$result_formula.css opacity: 0
+
         @setItemData() if @item_data.length == 0
         _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
@@ -163,6 +165,7 @@ class Main
                 @$result_item_big.velocity opacity: 0, DUR
                 @$result_price.velocity opacity: 1, DUR
                 @$result_item.velocity opacity: 1, DUR
+                @$result_formula.velocity opacity: 1, DUR
 
                 @item_data.splice _rand, 1 # 一度出したアイテムは繰り返さないように
                 @setSocial()
