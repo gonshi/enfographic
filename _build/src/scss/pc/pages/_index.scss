@@ -279,12 +279,13 @@ body{
 }
 
 $result_item_width: 1040px;
+$item_row_length: 10;
 .result_item{
     position: relative;
     width: $result_item_width;
     height: 900px;
     margin: 0 auto;
-    background-size: $result_item_width / 10 $result_item_width / 10;
+    background-size: $result_item_width / $item_row_length $result_item_width / $item_row_length;
     opacity: 0;
 }
 
@@ -308,7 +309,7 @@ $result_item_width: 1040px;
 
 .result_item_hide{
     @include absolute('', 0, 0, '');
-    height: $result_item_width / 10;
+    height: $result_item_width / $item_row_length;
     background-color: #F2F2F2;
 }
 
@@ -365,4 +366,247 @@ $result_item_width: 1040px;
 .result_formula_unit{
     font-size: 56px;
     margin-left: 10px;
+}
+
+// ===================================
+//   smart phone
+// ===================================
+
+
+@import "../index-sp.scss";
+
+// ========================================
+//   common
+// ========================================
+
+.header{
+    @include sp{
+        .header_ttl{
+            display: none;
+            a{
+                @include absolute(30px, '', '', 30px);
+            }
+        }
+
+        .header_social{
+            @include absolute(50%, auto, '', 50%);
+            width: 400px;
+            margin: 380px auto auto -200px;
+        }
+
+        .header_social_inner{
+            &.fb-like{
+                width: 200px;
+                span{
+                    transform-origin: left top;
+                    transform: scale(2);
+                }
+            }
+
+            &.tweet{
+                float: left;
+                width: 150px;
+                text-align: left;
+                margin-left: 50px;
+
+                iframe{
+                    transform-origin: left top;
+                    transform: scale(2);
+                }
+            }
+        }
+    }
+
+    body.is_sp.show_result &{
+        .header_ttl{
+            display: block;
+            a{
+                @include sprite($index_logo-white);
+            }
+        }
+
+        &[data-color="black"]{
+            .header_ttl{
+                a{
+                    @include sprite($index_logo-black);
+                }
+            }
+        }
+    }
+}
+
+.contents{
+    @include sp{
+        min-height: 0px;
+
+        // ========================================
+        //   firstview
+        // ========================================
+
+        .firstview{
+            &[data-id="1"]{
+                .firstview_ttl{
+                    @include sprite($index_ttl);
+                    transform: translateY(-290px);
+                }
+
+                .firstview_txt{
+                    width: 640px;
+                    font-size: 32px;
+                    transform: translateY(0px);
+                }
+
+                .firstview_start{
+                    @include sprite($index_start);
+                }
+            }
+
+            &[data-id="2"]{
+                .firstview_subttl{
+                    width: 640px;
+                    margin: auto;
+                    text-align: left;
+                    font-size: 32px;
+                    transform: translateY(-220px);
+                }
+
+                .firstview_input{
+                    width: 640px;
+                    font-size: 80px;
+                    transform: translateY(-100px);
+
+                    &:before{
+                        @include absolute('', '', 15px, 15px);
+                        @include sprite($index_yen-black);
+                        content: "";
+                    }
+                }
+
+                .firstview_start{
+                    @include sprite($index_estimate);
+                    transform: translateY(100px);
+                }
+            }
+        }
+
+        .firstview_start{
+            transform: translateY(230px);
+
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        .firstview_logo-big{
+            @include sprite($index_logo-big);
+            transform: translateY(-190px);
+        }
+
+
+        // ========================================
+        //   result
+        // ========================================
+
+        .result{
+            &[data-color="black"]{
+                .result_price_yen{
+                    @include sprite($index_yen-black);
+                }
+
+                .result_formula_yen{
+                    @include sprite($index_yen-black);
+                }
+
+                .result_price{
+                    &:after{
+                        @include sprite($index_equal-black);
+                    }
+                }
+            }
+        }
+
+        .result_price{
+            &:after{
+                @include sprite($index_equal-white);
+                margin: 50px auto;
+            }
+        }
+
+        .result_price_yen{
+            @include sprite($index_yen-white);
+        }
+
+        $result_item_width: 693px;
+        $item_row_length: 7;
+        .result_item{
+            width: $result_item_width;
+            background-size: $result_item_width / $item_row_length $result_item_width / $item_row_length;
+        }
+
+        .result_item_hide{
+            height: $result_item_width / $item_row_length;
+        }
+
+        .result_formula{
+            width: $result_item_width;
+            margin: 60px auto 0;
+        }
+
+        .result_formula_price,
+        .result_formula_equal,
+        .result_formula_amount{
+            font-size: 64px;
+        }
+
+        .result_formula_amount_icon{
+            @include absolute(-5px, '', '', -98px);
+        }
+
+        .result_formula_amount_name{
+            @include absolute('', '', -30px, -103px);
+            width: 100px;
+            font-size: 18px;
+        }
+
+        .result_formula_yen{
+            @include sprite($index_yen-white);
+        }
+    }
+}
+
+.footer{
+    @include sp{
+        &[data-color="black"]{
+            .footer_again{
+                @include sprite($index_again-black);
+            }
+
+            .footer_another{
+                @include sprite($index_another-black);
+            }
+        }
+
+        .footer_inner{
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        .footer_again{
+            @include sprite($index_again-white);
+            margin-top: 20px;
+        }
+
+        .footer_another{
+            @include sprite($index_another-white);
+        }
+
+        .footer_copyright{
+            @include sprite($index_copyright-white);
+        }
+    }
+
+    body.is_sp.show_result &{
+        display: block;
+    }
 }

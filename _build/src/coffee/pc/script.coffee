@@ -27,14 +27,14 @@ class Main
 
         @firstview_step = 0
 
-        @MAX_LENGTH = 10
+        @MAX_ROW_LENGTH = if $.browser.desktop then 10 else 7
 
         @social = require("./module/social")()
 
         for i in [0...$(".firstview").size()]
             @$firstview.push $(".firstview").filter("[data-id=\"#{i + 1}\"]")
         window.DUR = 500
-        window.VIEWPORT = 1080
+        window.VIEWPORT = 750
 
         @exec()
 
@@ -132,25 +132,25 @@ class Main
             easing: [300, 20]
         ).
         velocity(
-            marginLeft: -518
-            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2 + 2
-            width: 100
-            height: 100
+            marginLeft: @$result_item.get(0).getBoundingClientRect().left - @$win.width() / 2
+            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2
+            width: @$result_item.width() / @MAX_ROW_LENGTH
+            height: @$result_item.width() / @MAX_ROW_LENGTH
             scale: [1, _result_item_big_ratio]
         ,
             duration: DUR * 1.5
             delay: DUR * 5
             complete: =>
-                # (@$result_item.width() / 10) はアイテム1個あたりの画像幅
+                # (@$result_item.width() / @MAX_ROW_LENGTH) はアイテム1個あたりの画像幅
                 @$result_item.height(
-                    Math.ceil(Math.floor(price / @item_data[_rand].price) / 10) * (@$result_item.width() / 10)
+                    Math.ceil(Math.floor(price / @item_data[_rand].price) / @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
                 )
                 # 1桁単位の分を隠す
-                if Math.floor(price / @item_data[_rand].price) == 10
+                if Math.floor(price / @item_data[_rand].price) % @MAX_ROW_LENGTH == 0
                     @$result_item_hide.width 0
                 else
                     @$result_item_hide.width(
-                        (10 - Math.floor(price / @item_data[_rand].price) % 10) * (@$result_item.width() / 10)
+                        (@MAX_ROW_LENGTH - Math.floor(price / @item_data[_rand].price) % @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
                     )
 
                 @$result_item_big.velocity opacity: 0, DUR
@@ -165,6 +165,8 @@ class Main
     introHandler: (step) ->
         switch step
             when 0
+                @$header.find(".header_social").hide() unless $.browser.desktop
+
                 @$firstview[0].velocity opacity: 0, DUR, =>
                     @$firstview[0].hide()
                     @$firstview[1].show().velocity opacity: 1, DUR

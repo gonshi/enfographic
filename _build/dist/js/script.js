@@ -183,13 +183,13 @@ Main = (function() {
     this.item_data = [];
     this.setItemData();
     this.firstview_step = 0;
-    this.MAX_LENGTH = 10;
+    this.MAX_ROW_LENGTH = $.browser.desktop ? 10 : 7;
     this.social = require("./module/social")();
     for (i = j = 0, ref = $(".firstview").size(); 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
       this.$firstview.push($(".firstview").filter("[data-id=\"" + (i + 1) + "\"]"));
     }
     window.DUR = 500;
-    window.VIEWPORT = 1080;
+    window.VIEWPORT = 750;
     this.exec();
   }
 
@@ -293,21 +293,21 @@ Main = (function() {
       delay: DUR,
       easing: [300, 20]
     }).velocity({
-      marginLeft: -518,
-      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2 + 2,
-      width: 100,
-      height: 100,
+      marginLeft: this.$result_item.get(0).getBoundingClientRect().left - this.$win.width() / 2,
+      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2,
+      width: this.$result_item.width() / this.MAX_ROW_LENGTH,
+      height: this.$result_item.width() / this.MAX_ROW_LENGTH,
       scale: [1, _result_item_big_ratio]
     }, {
       duration: DUR * 1.5,
       delay: DUR * 5,
       complete: (function(_this) {
         return function() {
-          _this.$result_item.height(Math.ceil(Math.floor(price / _this.item_data[_rand].price) / 10) * (_this.$result_item.width() / 10));
-          if (Math.floor(price / _this.item_data[_rand].price) === 10) {
+          _this.$result_item.height(Math.ceil(Math.floor(price / _this.item_data[_rand].price) / _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
+          if (Math.floor(price / _this.item_data[_rand].price) % _this.MAX_ROW_LENGTH === 0) {
             _this.$result_item_hide.width(0);
           } else {
-            _this.$result_item_hide.width((10 - Math.floor(price / _this.item_data[_rand].price) % 10) * (_this.$result_item.width() / 10));
+            _this.$result_item_hide.width((_this.MAX_ROW_LENGTH - Math.floor(price / _this.item_data[_rand].price) % _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
           }
           _this.$result_item_big.velocity({
             opacity: 0
@@ -331,6 +331,9 @@ Main = (function() {
   Main.prototype.introHandler = function(step) {
     switch (step) {
       case 0:
+        if (!$.browser.desktop) {
+          this.$header.find(".header_social").hide();
+        }
         return this.$firstview[0].velocity({
           opacity: 0
         }, DUR, (function(_this) {

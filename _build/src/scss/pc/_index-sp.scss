@@ -1,0 +1,224 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$index-again-black-name: 'index_again-black';
+$index-again-black-x: 507px;
+$index-again-black-y: 380px;
+$index-again-black-offset-x: -507px;
+$index-again-black-offset-y: -380px;
+$index-again-black-width: 480px;
+$index-again-black-height: 96px;
+$index-again-black-total-width: 1159px;
+$index-again-black-total-height: 705px;
+$index-again-black-image: '../img/index-sp.png';
+$index-again-black: (507px, 380px, -507px, -380px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_again-black', );
+$index-again-white-name: 'index_again-white';
+$index-again-white-x: 0px;
+$index-again-white-y: 609px;
+$index-again-white-offset-x: 0px;
+$index-again-white-offset-y: -609px;
+$index-again-white-width: 480px;
+$index-again-white-height: 96px;
+$index-again-white-total-width: 1159px;
+$index-again-white-total-height: 705px;
+$index-again-white-image: '../img/index-sp.png';
+$index-again-white: (0px, 609px, 0px, -609px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_again-white', );
+$index-another-black-name: 'index_another-black';
+$index-another-black-x: 507px;
+$index-another-black-y: 180px;
+$index-another-black-offset-x: -507px;
+$index-another-black-offset-y: -180px;
+$index-another-black-width: 480px;
+$index-another-black-height: 96px;
+$index-another-black-total-width: 1159px;
+$index-another-black-total-height: 705px;
+$index-another-black-image: '../img/index-sp.png';
+$index-another-black: (507px, 180px, -507px, -180px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_another-black', );
+$index-another-white-name: 'index_another-white';
+$index-another-white-x: 507px;
+$index-another-white-y: 280px;
+$index-another-white-offset-x: -507px;
+$index-another-white-offset-y: -280px;
+$index-another-white-width: 480px;
+$index-another-white-height: 96px;
+$index-another-white-total-width: 1159px;
+$index-another-white-total-height: 705px;
+$index-another-white-image: '../img/index-sp.png';
+$index-another-white: (507px, 280px, -507px, -280px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_another-white', );
+$index-equal-black-name: 'index_equal-black';
+$index-equal-black-x: 1139px;
+$index-equal-black-y: 224px;
+$index-equal-black-offset-x: -1139px;
+$index-equal-black-offset-y: -224px;
+$index-equal-black-width: 17px;
+$index-equal-black-height: 32px;
+$index-equal-black-total-width: 1159px;
+$index-equal-black-total-height: 705px;
+$index-equal-black-image: '../img/index-sp.png';
+$index-equal-black: (1139px, 224px, -1139px, -224px, 17px, 32px, 1159px, 705px, '../img/index-sp.png', 'index_equal-black', );
+$index-equal-white-name: 'index_equal-white';
+$index-equal-white-x: 1139px;
+$index-equal-white-y: 180px;
+$index-equal-white-offset-x: -1139px;
+$index-equal-white-offset-y: -180px;
+$index-equal-white-width: 17px;
+$index-equal-white-height: 32px;
+$index-equal-white-total-width: 1159px;
+$index-equal-white-total-height: 705px;
+$index-equal-white-image: '../img/index-sp.png';
+$index-equal-white: (1139px, 180px, -1139px, -180px, 17px, 32px, 1159px, 705px, '../img/index-sp.png', 'index_equal-white', );
+$index-estimate-name: 'index_estimate';
+$index-estimate-x: 484px;
+$index-estimate-y: 509px;
+$index-estimate-offset-x: -484px;
+$index-estimate-offset-y: -509px;
+$index-estimate-width: 480px;
+$index-estimate-height: 96px;
+$index-estimate-total-width: 1159px;
+$index-estimate-total-height: 705px;
+$index-estimate-image: '../img/index-sp.png';
+$index-estimate: (484px, 509px, -484px, -509px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_estimate', );
+$index-logo-big-name: 'index_logo-big';
+$index-logo-big-x: 0px;
+$index-logo-big-y: 0px;
+$index-logo-big-offset-x: 0px;
+$index-logo-big-offset-y: 0px;
+$index-logo-big-width: 503px;
+$index-logo-big-height: 505px;
+$index-logo-big-total-width: 1159px;
+$index-logo-big-total-height: 705px;
+$index-logo-big-image: '../img/index-sp.png';
+$index-logo-big: (0px, 0px, 0px, 0px, 503px, 505px, 1159px, 705px, '../img/index-sp.png', 'index_logo-big', );
+$index-logo-black-name: 'index_logo-black';
+$index-logo-black-x: 991px;
+$index-logo-black-y: 180px;
+$index-logo-black-offset-x: -991px;
+$index-logo-black-offset-y: -180px;
+$index-logo-black-width: 144px;
+$index-logo-black-height: 40px;
+$index-logo-black-total-width: 1159px;
+$index-logo-black-total-height: 705px;
+$index-logo-black-image: '../img/index-sp.png';
+$index-logo-black: (991px, 180px, -991px, -180px, 144px, 40px, 1159px, 705px, '../img/index-sp.png', 'index_logo-black', );
+$index-logo-white-name: 'index_logo-white';
+$index-logo-white-x: 991px;
+$index-logo-white-y: 224px;
+$index-logo-white-offset-x: -991px;
+$index-logo-white-offset-y: -224px;
+$index-logo-white-width: 144px;
+$index-logo-white-height: 40px;
+$index-logo-white-total-width: 1159px;
+$index-logo-white-total-height: 705px;
+$index-logo-white-image: '../img/index-sp.png';
+$index-logo-white: (991px, 224px, -991px, -224px, 144px, 40px, 1159px, 705px, '../img/index-sp.png', 'index_logo-white', );
+$index-start-name: 'index_start';
+$index-start-x: 0px;
+$index-start-y: 509px;
+$index-start-offset-x: 0px;
+$index-start-offset-y: -509px;
+$index-start-width: 480px;
+$index-start-height: 96px;
+$index-start-total-width: 1159px;
+$index-start-total-height: 705px;
+$index-start-image: '../img/index-sp.png';
+$index-start: (0px, 509px, 0px, -509px, 480px, 96px, 1159px, 705px, '../img/index-sp.png', 'index_start', );
+$index-ttl-name: 'index_ttl';
+$index-ttl-x: 507px;
+$index-ttl-y: 0px;
+$index-ttl-offset-x: -507px;
+$index-ttl-offset-y: 0px;
+$index-ttl-width: 652px;
+$index-ttl-height: 176px;
+$index-ttl-total-width: 1159px;
+$index-ttl-total-height: 705px;
+$index-ttl-image: '../img/index-sp.png';
+$index-ttl: (507px, 0px, -507px, 0px, 652px, 176px, 1159px, 705px, '../img/index-sp.png', 'index_ttl', );
+$index-yen-black-name: 'index_yen-black';
+$index-yen-black-x: 991px;
+$index-yen-black-y: 280px;
+$index-yen-black-offset-x: -991px;
+$index-yen-black-offset-y: -280px;
+$index-yen-black-width: 42px;
+$index-yen-black-height: 48px;
+$index-yen-black-total-width: 1159px;
+$index-yen-black-total-height: 705px;
+$index-yen-black-image: '../img/index-sp.png';
+$index-yen-black: (991px, 280px, -991px, -280px, 42px, 48px, 1159px, 705px, '../img/index-sp.png', 'index_yen-black', );
+$index-yen-white-name: 'index_yen-white';
+$index-yen-white-x: 1037px;
+$index-yen-white-y: 280px;
+$index-yen-white-offset-x: -1037px;
+$index-yen-white-offset-y: -280px;
+$index-yen-white-width: 42px;
+$index-yen-white-height: 48px;
+$index-yen-white-total-width: 1159px;
+$index-yen-white-total-height: 705px;
+$index-yen-white-image: '../img/index-sp.png';
+$index-yen-white: (1037px, 280px, -1037px, -280px, 42px, 48px, 1159px, 705px, '../img/index-sp.png', 'index_yen-white', );
+$index-sp-width: 1159px;
+$index-sp-height: 705px;
+$index-sp-image: '../img/index-sp.png';
+$index-sp-sprites: ($index-again-black, $index-again-white, $index-another-black, $index-another-white, $index-equal-black, $index-equal-white, $index-estimate, $index-logo-big, $index-logo-black, $index-logo-white, $index-start, $index-ttl, $index-yen-black, $index-yen-white, );
+$index-sp: (1159px, 705px, '../img/index-sp.png', $index-sp-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
