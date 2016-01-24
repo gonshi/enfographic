@@ -169,6 +169,7 @@ Main = (function() {
     var i, j, ref;
     this.$firstview = [];
     this.$win = $(window);
+    this.$base = $("html, body");
     this.$body = $("body");
     this.$header = $(".header");
     this.$firstview_start = $(".firstview_start");
@@ -212,16 +213,17 @@ Main = (function() {
   };
 
   Main.prototype.showResult = function(price) {
-    var _count, _rand, _result_item_big_ratio, _separated_price;
-    this.$body.prop({
+    var _amount, _count, _rand, _result_item_big_ratio, _separated_price;
+    this.$base.prop({
       scrollTop: 0
-    }).addClass("show_result");
+    });
+    this.$body.addClass("show_result");
     if (this.item_data.length === 0) {
       this.setItemData();
     }
     _rand = Math.floor(Math.random() * this.item_data.length);
     _count = 0;
-    while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 1) {
+    while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 0.1) {
       if (_count++ > this.item_data.length - 1) {
         if (this.item_data.length < this.item_data_copy.length) {
           this.setItemData();
@@ -233,6 +235,7 @@ Main = (function() {
       }
       _rand = (_rand + 1) % this.item_data.length;
     }
+    _amount = Math.floor(price / this.item_data[_rand].price * 10) / 10;
     this.$body.velocity({
       backgroundColor: this.item_data[_rand].background
     }, DUR);
@@ -270,7 +273,7 @@ Main = (function() {
         "font-size": parseInt(this.$result_formula_amount_name.css("font-size")) - 1
       });
     }
-    this.$result_formula_amount_txt.text(String(Math.floor(price / this.item_data[_rand].price)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    this.$result_formula_amount_txt.text(String(_amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.removeAttr("style").css({
       top: this.$win.height() / 2,
@@ -312,11 +315,11 @@ Main = (function() {
       delay: DUR * 5,
       complete: (function(_this) {
         return function() {
-          _this.$result_item.height(Math.ceil(Math.floor(price / _this.item_data[_rand].price) / _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
-          if (Math.floor(price / _this.item_data[_rand].price) % _this.MAX_ROW_LENGTH === 0) {
+          _this.$result_item.height(Math.ceil(_amount / _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
+          if (_amount % _this.MAX_ROW_LENGTH === 0) {
             _this.$result_item_hide.width(0);
           } else {
-            _this.$result_item_hide.width((_this.MAX_ROW_LENGTH - Math.floor(price / _this.item_data[_rand].price) % _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
+            _this.$result_item_hide.width((_this.MAX_ROW_LENGTH - _amount % _this.MAX_ROW_LENGTH) * (_this.$result_item.width() / _this.MAX_ROW_LENGTH));
           }
           _this.$result_item_big.velocity({
             opacity: 0
@@ -379,8 +382,6 @@ Main = (function() {
           alert("数値を適切に入力してください。");
           this.backFirstviewStep();
           return;
-        } else if (parseInt(this.$firstview[1].find(".firstview_input_inner").val()) > 499999999) {
-          alert("数値が大きすぎてブラウザの挙動が重くなる可能性があります。");
         }
         return this.$firstview[1].velocity({
           opacity: 0

@@ -51,7 +51,7 @@ class Main
         @setItemData() if @item_data.length == 0
         _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
-        while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 1)
+        while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 0.1)
             if _count++ > @item_data.length - 1
                 if @item_data.length < @item_data_copy.length # data listが削られていた場合、元に戻してやり直す
                     @setItemData()
@@ -61,6 +61,8 @@ class Main
                     break
 
             _rand = (_rand + 1) % @item_data.length
+
+        _amount = Math.floor(price / @item_data[_rand].price * 10) / 10 # 小数第1桁まで
 
         @$body.velocity backgroundColor: @item_data[_rand].background, DUR
         @$result_item_hide.velocity backgroundColor: @item_data[_rand].background, DUR
@@ -94,7 +96,7 @@ class Main
             @$result_formula_amount_name.css "font-size": parseInt(@$result_formula_amount_name.css("font-size")) - 1
 
         @$result_formula_amount_txt.text(
-            String(Math.floor(price / @item_data[_rand].price)).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
+            String(_amount).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
         )
         @$result_formula_unit.text "#{@item_data[_rand].unit}分"
 
@@ -146,16 +148,16 @@ class Main
             complete: =>
                 # (@$result_item.width() / @MAX_ROW_LENGTH) はアイテム1個あたりの画像幅
                 @$result_item.height(
-                    Math.ceil(Math.floor(price / @item_data[_rand].price) / @MAX_ROW_LENGTH) *
+                    Math.ceil(_amount / @MAX_ROW_LENGTH) *
                     (@$result_item.width() / @MAX_ROW_LENGTH)
                 )
                 # 1桁単位の分を隠す
-                if Math.floor(price / @item_data[_rand].price) % @MAX_ROW_LENGTH == 0
+                if _amount % @MAX_ROW_LENGTH == 0
                     @$result_item_hide.width 0
                 else
                     @$result_item_hide.width(
-                        (@MAX_ROW_LENGTH - Math.floor(price / @item_data[_rand].price) %
-                        @MAX_ROW_LENGTH) * (@$result_item.width() / @MAX_ROW_LENGTH)
+                        (@MAX_ROW_LENGTH - _amount % @MAX_ROW_LENGTH) *
+                        (@$result_item.width() / @MAX_ROW_LENGTH)
                     )
 
                 @$result_item_big.velocity opacity: 0, DUR
