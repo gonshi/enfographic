@@ -414,9 +414,9 @@ body.show_result .footer {
   width: 608px;
   height: 166px;
   margin: auto;
-  -webkit-transform: translateY(-175px);
-      -ms-transform: translateY(-175px);
-          transform: translateY(-175px);
+  -webkit-transform: translateY(-140px);
+      -ms-transform: translateY(-140px);
+          transform: translateY(-140px);
   overflow: hidden;
   white-space: nowrap;
   text-indent: 110%;
@@ -429,9 +429,9 @@ body.show_result .footer {
   width: 580px;
   margin: auto;
   font-size: 18px;
-  -webkit-transform: translateY(15px);
-      -ms-transform: translateY(15px);
-          transform: translateY(15px);
+  -webkit-transform: translateY(50px);
+      -ms-transform: translateY(50px);
+          transform: translateY(50px);
 }
 .firstview[data-id="1"] .firstview_start {
   background-image: url(../img/index.png);
@@ -446,9 +446,9 @@ body.show_result .footer {
   right: 0;
   text-align: center;
   font-size: 18px;
-  -webkit-transform: translateY(-155px);
-      -ms-transform: translateY(-155px);
-          transform: translateY(-155px);
+  -webkit-transform: translateY(-180px);
+      -ms-transform: translateY(-180px);
+          transform: translateY(-180px);
 }
 .firstview[data-id="2"] .firstview_input {
   position: absolute;
@@ -460,9 +460,9 @@ body.show_result .footer {
   font-family: 'Roboto Slab', serif;
   font-size: 80px;
   border-bottom: 2px solid #C3C3C3;
-  -webkit-transform: translateY(-50px);
-      -ms-transform: translateY(-50px);
-          transform: translateY(-50px);
+  -webkit-transform: translateY(-75px);
+      -ms-transform: translateY(-75px);
+          transform: translateY(-75px);
 }
 .firstview[data-id="2"] .firstview_input:before {
   position: absolute;
@@ -493,6 +493,9 @@ body.show_result .footer {
   background-position: -447px -170px;
   width: 280px;
   height: 57px;
+  -webkit-transform: translateY(120px);
+      -ms-transform: translateY(120px);
+          transform: translateY(120px);
 }
 
 .firstview_start {
@@ -504,9 +507,9 @@ body.show_result .footer {
   overflow: hidden;
   white-space: nowrap;
   text-indent: 110%;
-  -webkit-transform: translateY(145px);
-      -ms-transform: translateY(145px);
-          transform: translateY(145px);
+  -webkit-transform: translateY(180px);
+      -ms-transform: translateY(180px);
+          transform: translateY(180px);
   cursor: pointer;
 }
 .firstview_start:hover {
@@ -524,9 +527,9 @@ body.show_result .footer {
   width: 443px;
   height: 443px;
   margin: auto;
-  -webkit-transform: translateY(-60px);
-      -ms-transform: translateY(-60px);
-          transform: translateY(-60px);
+  -webkit-transform: translateY(-25px);
+      -ms-transform: translateY(-25px);
+          transform: translateY(-25px);
 }
 
 .result {

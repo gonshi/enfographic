@@ -133,7 +133,7 @@ body{
             @include absolute(50%, 0, '', 0);
             @include sprite($index_ttl);
             margin: auto;
-            transform: translateY(-175px);
+            transform: translateY(-140px);
             @include hide-text();
         }
 
@@ -142,7 +142,7 @@ body{
             width: 580px;
             margin: auto;
             font-size: 18px;
-            transform: translateY(15px);
+            transform: translateY(50px);
         }
 
         .firstview_start{
@@ -155,7 +155,7 @@ body{
             @include absolute(50%, 0, '', 0);
             text-align: center;
             font-size: 18px;
-            transform: translateY(-155px);
+            transform: translateY(-180px);
         }
 
         .firstview_input{
@@ -165,7 +165,7 @@ body{
             font-family: 'Roboto Slab', serif;
             font-size: 80px;
             border-bottom: 2px solid #C3C3C3;
-            transform: translateY(-50px);
+            transform: translateY(-75px);
 
             &:before{
                 @include absolute('', '', 15px, 15px);
@@ -190,6 +190,7 @@ body{
 
         .firstview_start{
             @include sprite($index_estimate);
+            transform: translateY(120px);
         }
     }
 }
@@ -198,7 +199,7 @@ body{
     @include absolute(50%, 0, '', 0);
     margin: auto;
     @include hide-text();
-    transform: translateY(145px);
+    transform: translateY(180px);
     cursor: pointer;
 
     &:hover{
@@ -210,7 +211,7 @@ body{
     @include absolute(0, 0, 0, 0);
     @include sprite($index_logo-big);
     margin: auto;
-    transform: translateY(-60px);
+    transform: translateY(-25px);
 }
 
 
