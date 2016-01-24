@@ -85,7 +85,7 @@ Social = (function() {
         fjs.parentNode.insertBefore(js, fjs);
       }
     }
-    $(document).on("click", ".facebook", function(e) {
+    $(".facebook").on("click", function(e) {
       var _$social;
       _$social = $(e.target).parent();
       return FB.ui({
@@ -95,7 +95,7 @@ Social = (function() {
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
     });
-    $(document).on("click", ".tweet", function(e) {
+    $(".tweet").on("click", function(e) {
       var _$social, _dualScreenLeft, _dualScreenTop, _href, _left, _popupHeight, _popupWidth, _top, _txt, _url, _windowHeight, _windowWidth, ref1;
       _$social = $(e.target).parent();
       e.preventDefault();
@@ -172,6 +172,7 @@ Main = (function() {
     this.$base = $("html, body");
     this.$body = $("body");
     this.$header = $(".header");
+    this.$header_social = $(".header_social");
     this.$firstview_start = $(".firstview_start");
     this.$contents = $(".contents");
     this.$result = $(".result");
@@ -309,7 +310,7 @@ Main = (function() {
       easing: [300, 20]
     }).velocity({
       marginLeft: this.$result_item.get(0).getBoundingClientRect().left - this.$win.width() / 2,
-      marginTop: this.$result_item.get(0).getBoundingClientRect().top - this.$win.height() / 2,
+      marginTop: this.$result_item.get(0).getBoundingClientRect().top + this.$win.scrollTop() - this.$win.height() / 2,
       width: this.$result_item.width() / this.MAX_ROW_LENGTH,
       height: this.$result_item.width() / this.MAX_ROW_LENGTH,
       scale: [1, _result_item_big_ratio]
@@ -369,7 +370,7 @@ Main = (function() {
     switch (step) {
       case 0:
         if (!$.browser.desktop) {
-          this.$header.find(".header_social").hide();
+          this.$header_social.hide();
           this.$header.find(".header_ttl").show();
         }
         return this.$firstview[0].velocity({
@@ -432,6 +433,23 @@ Main = (function() {
         }
       };
     })(this));
+    this.$win.on("resize", (function(_this) {
+      return function(e) {
+        var i, j, ref;
+        if (_this.$body.hasClass("show_result")) {
+          return;
+        }
+        _this.$contents.height(_this.$win.height());
+        for (i = j = 0, ref = _this.$firstview.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+          _this.$firstview[i].height(_this.$win.height());
+        }
+        if (!$.browser.desktop) {
+          return _this.$header_social.css({
+            top: _this.$win.height() / 2 + 380
+          });
+        }
+      };
+    })(this));
     this.$firstview[1].find(".firstview_input_inner").on("input propertychange", function() {
       return $(this).val($(this).val().slice(0, 10));
     });
@@ -440,14 +458,6 @@ Main = (function() {
     }
     if ($.browser.iphone || $.browser.ipod || $.browser.ipad) {
       document.querySelector('meta[name="viewport"]').setAttribute("content", ("width=" + VIEWPORT + ", minimum-scale=0.25, ") + "maximum-scale=1.6, user-scalable=no");
-    } else if ($.browser.android) {
-      window.onload = (function(_this) {
-        return function() {
-          return _this.$body.css({
-            zoom: window.innerWidth / VIEWPORT
-          });
-        };
-      })(this);
     }
     if (location.search.match("skip")) {
       this.introHandler(this.firstview_step++);
@@ -456,6 +466,7 @@ Main = (function() {
         opacity: 1
       });
     }
+    this.$win.trigger("resize");
     this.social.exec("fb", "tweet");
     return this.preload();
   };

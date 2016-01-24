@@ -76,7 +76,7 @@ class Social
                 fjs.parentNode.insertBefore js, fjs
 
         # fb-share
-        $(document).on "click", ".facebook", (e) ->
+        $(".facebook").on "click", (e) ->
             _$social = $(e.target).parent()
             FB.ui
                 method: "feed"
@@ -86,7 +86,7 @@ class Social
                              "で換算すると#{_$social.attr "data-amount"}#{_$social.attr "data-unit"}です。"
 
         # tweet
-        $(document).on "click", ".tweet", (e) ->
+        $(".tweet").on "click", (e) ->
             _$social = $(e.target).parent()
             e.preventDefault()
 

@@ -331,12 +331,11 @@ body.show_result .header[data-color="black"] .header_ttl a {
 
 .contents {
   position: relative;
-  height: 100vh;
   min-height: 650px;
   color: #333333;
 }
 body.show_result .contents {
-  height: auto;
+  height: auto !important;
 }
 
 .footer {
@@ -428,7 +427,6 @@ body.show_result .footer {
 .firstview {
   display: none;
   position: relative;
-  height: 100vh;
   opacity: 0;
 }
 .firstview[data-id="1"] .firstview_ttl {

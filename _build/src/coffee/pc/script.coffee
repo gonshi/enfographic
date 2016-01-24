@@ -5,6 +5,7 @@ class Main
         @$base = $("html, body")
         @$body = $("body")
         @$header = $(".header")
+        @$header_social = $(".header_social")
         @$firstview_start = $(".firstview_start")
         @$contents = $(".contents")
         @$result = $(".result")
@@ -140,7 +141,7 @@ class Main
         ).
         velocity(
             marginLeft: @$result_item.get(0).getBoundingClientRect().left - @$win.width() / 2
-            marginTop: @$result_item.get(0).getBoundingClientRect().top - @$win.height() / 2
+            marginTop: @$result_item.get(0).getBoundingClientRect().top + @$win.scrollTop() - @$win.height() / 2
             width: @$result_item.width() / @MAX_ROW_LENGTH
             height: @$result_item.width() / @MAX_ROW_LENGTH
             scale: [1, _result_item_big_ratio]
@@ -184,7 +185,7 @@ class Main
         switch step
             when 0
                 unless $.browser.desktop
-                    @$header.find(".header_social").hide()
+                    @$header_social.hide()
                     @$header.find(".header_ttl").show()
 
                 @$firstview[0].velocity opacity: 0, DUR, =>
@@ -224,6 +225,17 @@ class Main
         @$win.on "keydown", (e) =>
             @introHandler @firstview_step++ if e.keyCode == 13
 
+        @$win.on "resize", (e) =>
+            return if @$body.hasClass "show_result"
+
+            @$contents.height @$win.height()
+
+            for i in [0...@$firstview.length]
+                @$firstview[i].height @$win.height()
+
+            unless $.browser.desktop
+                @$header_social.css top: @$win.height() / 2 + 380
+
         @$firstview[1].find(".firstview_input_inner").on "input propertychange", ->
             $(this).val $(this).val().slice(0, 10) # 10文字以上は禁止
 
@@ -239,14 +251,13 @@ class Main
                 "width=#{VIEWPORT}, minimum-scale=0.25, " +
                 "maximum-scale=1.6, user-scalable=no"
             )
-        else if $.browser.android
-            window.onload = => @$body.css zoom: window.innerWidth / VIEWPORT
 
         if location.search.match "skip"
             @introHandler @firstview_step++
         else
             @$firstview[0].show().velocity opacity: 1
 
+        @$win.trigger "resize"
         @social.exec "fb", "tweet"
         @preload()
 

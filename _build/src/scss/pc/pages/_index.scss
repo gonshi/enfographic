@@ -63,12 +63,11 @@ body{
 
 .contents{
     position: relative;
-    height: 100vh;
     min-height: 650px;
     color: #333333;
 
     @include show_result{
-        height: auto;
+        height: auto !important;
     }
 }
 
@@ -147,7 +146,6 @@ body{
 .firstview{
     display: none;
     position: relative;
-    height: 100vh;
     opacity: 0;
 
     &[data-id="1"]{
