@@ -2,6 +2,7 @@ class Main
     constructor: ->
         @$firstview = []
         @$win = $(window)
+        @$base = $("html, body")
         @$body = $("body")
         @$header = $(".header")
         @$firstview_start = $(".firstview_start")
@@ -44,7 +45,8 @@ class Main
             @item_data[i] = @item_data_copy[i]
 
     showResult: (price) ->
-        @$body.prop(scrollTop: 0).addClass "show_result"
+        @$base.prop(scrollTop: 0)
+        @$body.addClass "show_result"
 
         @setItemData() if @item_data.length == 0
         _rand = Math.floor(Math.random() * @item_data.length)
@@ -189,8 +191,6 @@ class Main
                     alert "数値を適切に入力してください。"
                     @backFirstviewStep()
                     return
-                else if parseInt(@$firstview[1].find(".firstview_input_inner").val()) > 499999999
-                    alert "数値が大きすぎてブラウザの挙動が重くなる可能性があります。"
 
                 @$firstview[1].velocity opacity: 0, DUR, =>
                     @$firstview[1].hide()

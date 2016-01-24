@@ -169,6 +169,7 @@ Main = (function() {
     var i, j, ref;
     this.$firstview = [];
     this.$win = $(window);
+    this.$base = $("html, body");
     this.$body = $("body");
     this.$header = $(".header");
     this.$firstview_start = $(".firstview_start");
@@ -213,9 +214,10 @@ Main = (function() {
 
   Main.prototype.showResult = function(price) {
     var _count, _rand, _result_item_big_ratio, _separated_price;
-    this.$body.prop({
+    this.$base.prop({
       scrollTop: 0
-    }).addClass("show_result");
+    });
+    this.$body.addClass("show_result");
     if (this.item_data.length === 0) {
       this.setItemData();
     }
@@ -379,8 +381,6 @@ Main = (function() {
           alert("数値を適切に入力してください。");
           this.backFirstviewStep();
           return;
-        } else if (parseInt(this.$firstview[1].find(".firstview_input_inner").val()) > 499999999) {
-          alert("数値が大きすぎてブラウザの挙動が重くなる可能性があります。");
         }
         return this.$firstview[1].velocity({
           opacity: 0
