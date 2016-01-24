@@ -567,6 +567,54 @@ module.exports={
             background: "#D9A637",
             unit: "個",
             price: 90000
+        },
+        {
+            name: "cake",
+            name_jp: "キルフェボンのケーキ",
+            color: "white",
+            background: "#FEC7CB",
+            unit: "個",
+            price: 649
+        },
+        {
+            name: "coffee",
+            name_jp: "スタバのラテ",
+            color: "white",
+            background: "#156233",
+            unit: "杯",
+            price: 370
+        },
+        {
+            name: "movie",
+            name_jp: "映画のチケット",
+            color: "white",
+            background: "#0E082C",
+            unit: "枚",
+            price: 1800
+        },
+        {
+            name: "noodle",
+            name_jp: "カップヌードル",
+            color: "white",
+            background: "#E7DB38",
+            unit: "個",
+            price: 180
+        },
+        {
+            name: "tabacco",
+            name_jp: "タバコ",
+            color: "white",
+            background: "#E0D1C4",
+            unit: "箱",
+            price: 410
+        },
+        {
+            name: "tv",
+            name_jp: "40型テレビ",
+            color: "white",
+            background: "#48A0F6",
+            unit: "台",
+            price: 65000
         }
     ]
 }
