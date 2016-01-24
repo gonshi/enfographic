@@ -188,7 +188,7 @@ body{
             transform: translateY(-75px);
 
             &:before{
-                @include absolute('', '', 15px, 15px);
+                @include absolute('', '', 15px, 5px);
                 @include sprite($index_yen-black);
                 content: "";
             }

@@ -1,7 +1,12 @@
+# 全角->半角変換
 String.prototype.toHalf = ->
     return this.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) ->
         return String.fromCharCode(s.charCodeAt(0) - 0xFEE0)
     )
+
+# 3桁カンマ区切り
+String.prototype.separate = ->
+    return this.replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
 
 class Main
     constructor: ->
@@ -82,7 +87,7 @@ class Main
         @$result.show().attr "data-id": @item_data[_rand].name
 
         # 3桁カンマ区切り
-        _separated_price = String(price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
+        _separated_price = String(price).separate()
 
         @$result_item.css(
             height: 900
@@ -104,7 +109,7 @@ class Main
             @$result_formula_amount_name.css "font-size": parseInt(@$result_formula_amount_name.css("font-size")) - 1
 
         @$result_formula_amount_txt.text(
-            String(_amount).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"
+            String(_amount).separate()
         )
         @$result_formula_unit.text "#{@item_data[_rand].unit}分"
 
@@ -122,7 +127,7 @@ class Main
         ).
         text(
             "#{@item_data[_rand].name_jp}" +
-            " (#{String(@item_data[_rand].price).replace /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"}円)"
+            " (#{String(@item_data[_rand].price).separate()}円)"
         ).
         velocity(
             opacity: [1, 0]
@@ -198,7 +203,7 @@ class Main
                     @$firstview[1].show().velocity opacity: 1, DUR
                     @$firstview[1].find(".firstview_input_inner").focus()
             when 1
-                _val = parseInt(@$firstview[1].find(".firstview_input_inner").val().toHalf())
+                _val = parseInt(@$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf())
                 if isNaN _val
                     alert "数値を適切に入力してください。"
                     @backFirstviewStep()
@@ -223,7 +228,7 @@ class Main
 
         # 再トライ
         @$footer.find(".footer_another").on "click", =>
-            @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val().toHalf())
+            @showResult parseInt(@$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf())
 
         @$footer.find(".footer_again").on "click", -> location.href = "./?skip"
 
@@ -243,7 +248,7 @@ class Main
                 @$header_social.css top: @$win.height() / 2 + 380
 
         @$firstview[1].find(".firstview_input_inner").on "input propertychange", ->
-            $(this).val $(this).val().slice(0, 10) # 10文字以上は禁止
+            $(this).val $(this).val().replace(/,/g, "").slice(0, 10).separate() # 10文字以上は禁止
 
         ###########################
         #   INIT

@@ -170,6 +170,10 @@ String.prototype.toHalf = function() {
   });
 };
 
+String.prototype.separate = function() {
+  return this.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+};
+
 Main = (function() {
   function Main() {
     var i, j, ref;
@@ -264,7 +268,7 @@ Main = (function() {
     this.$result.show().attr({
       "data-id": this.item_data[_rand].name
     });
-    _separated_price = String(price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    _separated_price = String(price).separate();
     this.$result_item.css({
       height: 900,
       backgroundImage: "url(./img/item/" + this.item_data[_rand].name + ".png)"
@@ -283,7 +287,7 @@ Main = (function() {
         "font-size": parseInt(this.$result_formula_amount_name.css("font-size")) - 1
       });
     }
-    this.$result_formula_amount_txt.text(String(_amount).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    this.$result_formula_amount_txt.text(String(_amount).separate());
     this.$result_formula_unit.text(this.item_data[_rand].unit + "分");
     this.$result_item_big.removeAttr("style").css({
       top: this.$win.height() / 2,
@@ -296,7 +300,7 @@ Main = (function() {
     this.$result_item_info.css({
       top: this.$win.height() / 2,
       marginTop: _result_item_big_ratio * this.$result_item_big.height() / 2
-    }).text(("" + this.item_data[_rand].name_jp) + (" (" + (String(this.item_data[_rand].price).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")) + "円)")).velocity({
+    }).text(("" + this.item_data[_rand].name_jp) + (" (" + (String(this.item_data[_rand].price).separate()) + "円)")).velocity({
       opacity: [1, 0]
     }, {
       duration: DUR,
@@ -392,7 +396,7 @@ Main = (function() {
           };
         })(this));
       case 1:
-        _val = parseInt(this.$firstview[1].find(".firstview_input_inner").val().toHalf());
+        _val = parseInt(this.$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf());
         if (isNaN(_val)) {
           alert("数値を適切に入力してください。");
           this.backFirstviewStep();
@@ -428,7 +432,7 @@ Main = (function() {
     })(this));
     this.$footer.find(".footer_another").on("click", (function(_this) {
       return function() {
-        return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val().toHalf()));
+        return _this.showResult(parseInt(_this.$firstview[1].find(".firstview_input_inner").val().replace(/,/g, "").toHalf()));
       };
     })(this));
     this.$footer.find(".footer_again").on("click", function() {
@@ -459,7 +463,7 @@ Main = (function() {
       };
     })(this));
     this.$firstview[1].find(".firstview_input_inner").on("input propertychange", function() {
-      return $(this).val($(this).val().slice(0, 10));
+      return $(this).val($(this).val().replace(/,/g, "").slice(0, 10).separate());
     });
     if (!$.browser.desktop) {
       this.$body.addClass("is_sp");

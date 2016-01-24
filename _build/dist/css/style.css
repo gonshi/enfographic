@@ -492,7 +492,7 @@ body.show_result .footer {
 .firstview[data-id="2"] .firstview_input:before {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  left: 5px;
   background-image: url(../img/index.png);
   background-position: -56px -508px;
   width: 45px;
