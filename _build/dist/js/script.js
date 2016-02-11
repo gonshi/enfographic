@@ -483,10 +483,12 @@ Main = (function() {
     this.social.exec("fb", "tweet");
     this.preload();
     _search = location.search.replace(/^\?/, '');
-    if (_search.match(/item=(.*?)(\&|＆|$)/)) {
+    _item = "";
+    _price = 0;
+    if (_search.match(/item=(.*?)(\&|$)/)) {
       _item = _search.match(/item=(.*?)\&/)[1];
     }
-    if (_search.match(/price=(.*?)(\&|＆|$)/)) {
+    if (_search.match(/price=(.*?)(\&|$)/)) {
       _price = _search.match(/price=(.*?)$/)[1];
     }
     _rand = -1;
