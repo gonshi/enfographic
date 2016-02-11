@@ -90,7 +90,7 @@ Social = (function() {
       _$social = $(e.target).parent();
       return FB.ui({
         method: "feed",
-        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "＆") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
+        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + (escape("&"))) + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
         picture: (_$social.attr("data-url")) + "img/share/" + (_$social.attr("data-id")) + ".png",
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
