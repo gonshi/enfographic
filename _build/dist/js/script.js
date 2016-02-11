@@ -90,7 +90,7 @@ Social = (function() {
       _$social = $(e.target).parent();
       return FB.ui({
         method: "feed",
-        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "&") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
+        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "_and_") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
         picture: (_$social.attr("data-url")) + "img/share/" + (_$social.attr("data-id")) + ".png",
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
@@ -121,7 +121,7 @@ Social = (function() {
       _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft;
       _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop;
       _txt = ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。");
-      _url = ((_$social.attr("data-url")) + "share/") + ((_$social.attr("data-id")) + ".html?") + ("item=" + (_$social.attr("data-id")) + "&") + ("price=" + (_$social.attr("data-price").replace(/,/g, '')));
+      _url = ((_$social.attr("data-url")) + "share/") + ((_$social.attr("data-id")) + ".html?") + ("item=" + (_$social.attr("data-id")) + "_and_") + ("price=" + (_$social.attr("data-price").replace(/,/g, '')));
       _href = "http://twitter.com/share?url=" + (encodeURIComponent(_url)) + "&text=" + (encodeURIComponent(_txt));
       return window.open(_href, "twitter", ("width=" + _popupWidth + ", height=" + _popupHeight + ", ") + ("top=" + _top + ", left=" + _left));
     });
@@ -485,11 +485,11 @@ Main = (function() {
     _search = location.search.replace(/^\?/, '');
     _item = "";
     _price = 0;
-    if (_search.match(/item=(.*?)(\&|$)/)) {
-      _item = _search.match(/item=(.*?)(\&|$)/)[1];
+    if (_search.match(/item=(.*?)(\&|_and_|$)/)) {
+      _item = _search.match(/item=(.*?)(\&|_and_|$)/)[1];
     }
-    if (_search.match(/price=(.*?)(\&|$)/)) {
-      _price = _search.match(/price=(.*?)(\&|$)/)[1];
+    if (_search.match(/price=(.*?)(\&|_and_|$)/)) {
+      _price = _search.match(/price=(.*?)(\&|_and_|$)/)[1];
     }
     _rand = -1;
     for (i = j = 0, ref = this.item_data.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {

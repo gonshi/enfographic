@@ -276,10 +276,10 @@ class Main
         _search = location.search.replace(/^\?/, '')
         _item = ""
         _price = 0
-        if _search.match(/item=(.*?)(\&|$)/)
-            _item = _search.match(/item=(.*?)(\&|$)/)[1]
-        if _search.match(/price=(.*?)(\&|$)/)
-            _price = _search.match(/price=(.*?)(\&|$)/)[1]
+        if _search.match(/item=(.*?)(\&|_and_|$)/)
+            _item = _search.match(/item=(.*?)(\&|_and_|$)/)[1]
+        if _search.match(/price=(.*?)(\&|_and_|$)/)
+            _price = _search.match(/price=(.*?)(\&|_and_|$)/)[1]
 
         _rand = -1
         for i in [0...@item_data.length]
