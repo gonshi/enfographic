@@ -286,6 +286,9 @@ class Main
                 break
 
         if _rand > 0 && !isNaN(_price) && _price > 0
+            unless $.browser.desktop
+                @$header_social.hide()
+                @$header.find(".header_ttl").show()
             @$firstview[1].find(".firstview_input_inner").val _price
             @showResult _price, _rand
         else if location.search.match "skip"

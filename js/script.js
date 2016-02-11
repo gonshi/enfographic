@@ -497,6 +497,10 @@ Main = (function() {
       }
     }
     if (_rand > 0 && !isNaN(_price) && _price > 0) {
+      if (!$.browser.desktop) {
+        this.$header_social.hide();
+        this.$header.find(".header_ttl").show();
+      }
       this.$firstview[1].find(".firstview_input_inner").val(_price);
       return this.showResult(_price, _rand);
     } else if (location.search.match("skip")) {
