@@ -90,7 +90,7 @@ Social = (function() {
       _$social = $(e.target).parent();
       return FB.ui({
         method: "feed",
-        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "＆") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
+        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "&") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
         picture: (_$social.attr("data-url")) + "img/share/" + (_$social.attr("data-id")) + ".png",
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
@@ -486,10 +486,10 @@ Main = (function() {
     _item = "";
     _price = 0;
     if (_search.match(/item=(.*?)(\&|$)/)) {
-      _item = _search.match(/item=(.*?)\&/)[1];
+      _item = _search.match(/item=(.*?)(\&|$)/)[1];
     }
     if (_search.match(/price=(.*?)(\&|$)/)) {
-      _price = _search.match(/price=(.*?)$/)[1];
+      _price = _search.match(/price=(.*?)(\&|$)/)[1];
     }
     _rand = -1;
     for (i = j = 0, ref = this.item_data.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {

@@ -81,7 +81,7 @@ class Social
             FB.ui
                 method: "feed"
                 link: "#{_$social.attr("data-url")}?" +
-                      "item=#{_$social.attr("data-id")}＆" +
+                      "item=#{_$social.attr("data-id")}&" +
                       "price=#{_$social.attr("data-price").replace(/,/g, '')}"
                 picture: "#{_$social.attr "data-url"}img/share/#{_$social.attr "data-id"}.png"
                 description: "#{_$social.attr "data-price"}円は、#{_$social.attr "data-name"}" +

@@ -277,9 +277,9 @@ class Main
         _item = ""
         _price = 0
         if _search.match(/item=(.*?)(\&|$)/)
-            _item = _search.match(/item=(.*?)\&/)[1]
+            _item = _search.match(/item=(.*?)(\&|$)/)[1]
         if _search.match(/price=(.*?)(\&|$)/)
-            _price = _search.match(/price=(.*?)$/)[1]
+            _price = _search.match(/price=(.*?)(\&|$)/)[1]
 
         _rand = -1
         for i in [0...@item_data.length]
