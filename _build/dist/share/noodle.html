@@ -23,14 +23,24 @@
   <body>
     <script>
       var search = location.search.replace(/^\?/, '');
-      var item;
-      var price;
+      var item = '';
+      var price = '';
       if(search.match(/item=(.*?)(\&|$)/)){
         item = search.match(/item=(.*?)\&/)[1];
       }
       if(search.match(/price=(.*?)(\&|$)/)){
         price = search.match(/price=(.*?)$/)[1];
       }
+      
+      if(search.match('data')){
+        if(search.match(/data=(.*?)_/)){
+          item = search.match(/data=(.*?)_/)[1]
+        }
+        if(search.match(/_(.*?)$/)){
+          price = search.match(/_(.*?)$/)[1]
+        }
+      }
+      
       if(item.length > 0 && price.length > 0){
         location.replace("http://www.yenfographics.com/" + '?item=' + item + '&price=' + price);
       }
