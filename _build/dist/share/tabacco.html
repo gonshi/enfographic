@@ -21,6 +21,22 @@
     <link rel="shortcut icon" href="/favicon.ico">
   </head>
   <body>
-    <script>location.replace("http://www.yenfographics.com/");</script>
+    <script>
+      var search = location.search.replace(/^\?/, '');
+      var item;
+      var price;
+      if(search.match(/item=(.*?)(\&|$)/)){
+        item = search.match(/item=(.*?)\&/)[1];
+      }
+      if(search.match(/price=(.*?)(\&|$)/)){
+        price = search.match(/price=(.*?)$/)[1];
+      }
+      if(item.length > 0 && price.length > 0){
+        location.replace("http://www.yenfographics.com/" + '?item=' + item + '&price=' + price);
+      }
+      else{
+        location.replace("http://www.yenfographics.com/");
+      }
+    </script>
   </body>
 </html>

@@ -90,7 +90,7 @@ Social = (function() {
       _$social = $(e.target).parent();
       return FB.ui({
         method: "feed",
-        link: _$social.attr("data-url"),
+        link: ((_$social.attr("data-url")) + "?") + ("item=" + (_$social.attr("data-id")) + "&") + ("price=" + (_$social.attr("data-price").replace(/,/g, ''))),
         picture: (_$social.attr("data-url")) + "img/share/" + (_$social.attr("data-id")) + ".png",
         description: ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。")
       });
@@ -121,8 +121,8 @@ Social = (function() {
       _left = ((_windowWidth / 2) - (_popupWidth / 2)) + _dualScreenLeft;
       _top = ((_windowHeight / 2) - (_popupHeight / 2)) + _dualScreenTop;
       _txt = ((_$social.attr("data-price")) + "円は、" + (_$social.attr("data-name"))) + ("で換算すると" + (_$social.attr("data-amount")) + (_$social.attr("data-unit")) + "です。");
-      _url = (_$social.attr("data-url")) + "share/" + (_$social.attr("data-id")) + ".html";
-      _href = "http://twitter.com/share?url=" + _url + "&text=" + (encodeURIComponent(_txt));
+      _url = ((_$social.attr("data-url")) + "share/") + ((_$social.attr("data-id")) + ".html?") + ("item=" + (_$social.attr("data-id")) + "&") + ("price=" + (_$social.attr("data-price").replace(/,/g, '')));
+      _href = "http://twitter.com/share?url=" + (encodeURIComponent(_url)) + "&text=" + (encodeURIComponent(_txt));
       return window.open(_href, "twitter", ("width=" + _popupWidth + ", height=" + _popupHeight + ", ") + ("top=" + _top + ", left=" + _left));
     });
     return {
@@ -223,7 +223,7 @@ Main = (function() {
     return results;
   };
 
-  Main.prototype.showResult = function(price) {
+  Main.prototype.showResult = function(price, rand) {
     var _amount, _count, _rand, _result_item_big_ratio, _separated_price;
     this.$base.prop({
       scrollTop: 0
@@ -235,7 +235,11 @@ Main = (function() {
     if (this.item_data.length === 0) {
       this.setItemData();
     }
-    _rand = Math.floor(Math.random() * this.item_data.length);
+    if (rand != null) {
+      _rand = rand;
+    } else {
+      _rand = Math.floor(Math.random() * this.item_data.length);
+    }
     _count = 0;
     while (price / this.item_data[_rand].price > 1000000 || price / this.item_data[_rand].price < 0.1) {
       if (_count++ > this.item_data.length - 1) {
@@ -425,6 +429,7 @@ Main = (function() {
   };
 
   Main.prototype.exec = function() {
+    var _item, _price, _rand, _search, i, j, ref;
     this.$firstview_start.on("click", (function(_this) {
       return function() {
         return _this.introHandler(_this.firstview_step++);
@@ -474,16 +479,33 @@ Main = (function() {
         paddingRight: 40
       });
     }
-    if (location.search.match("skip")) {
-      this.introHandler(this.firstview_step++);
+    this.$win.trigger("resize");
+    this.social.exec("fb", "tweet");
+    this.preload();
+    _search = location.search.replace(/^\?/, '');
+    if (_search.match(/item=(.*?)(\&|$)/)) {
+      _item = _search.match(/item=(.*?)\&/)[1];
+    }
+    if (_search.match(/price=(.*?)(\&|$)/)) {
+      _price = _search.match(/price=(.*?)$/)[1];
+    }
+    _rand = -1;
+    for (i = j = 0, ref = this.item_data.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+      if (this.item_data[i].name === _item) {
+        _rand = i;
+        break;
+      }
+    }
+    if (_rand > 0 && !isNaN(_price) && _price > 0) {
+      this.$firstview[1].find(".firstview_input_inner").val(_price);
+      return this.showResult(_price, _rand);
+    } else if (location.search.match("skip")) {
+      return this.introHandler(this.firstview_step++);
     } else {
-      this.$firstview[0].show().velocity({
+      return this.$firstview[0].show().velocity({
         opacity: 1
       });
     }
-    this.$win.trigger("resize");
-    this.social.exec("fb", "tweet");
-    return this.preload();
   };
 
   return Main;

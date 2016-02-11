@@ -55,14 +55,17 @@ class Main
         for i in [0...@item_data_copy.length]
             @item_data[i] = @item_data_copy[i]
 
-    showResult: (price) ->
+    showResult: (price, rand) ->
         @$base.prop(scrollTop: 0)
         @$body.addClass "show_result"
 
         @$result_formula.css opacity: 0
 
         @setItemData() if @item_data.length == 0
-        _rand = Math.floor(Math.random() * @item_data.length)
+        if rand?
+            _rand = rand
+        else
+            _rand = Math.floor(Math.random() * @item_data.length)
         _count = 0
         while(price / @item_data[_rand].price > 1000000 || price / @item_data[_rand].price < 0.1)
             if _count++ > @item_data.length - 1
@@ -265,13 +268,29 @@ class Main
 
             @$firstview[1].find(".firstview_input").css paddingRight: 40
 
-        if location.search.match "skip"
-            @introHandler @firstview_step++
-        else
-            @$firstview[0].show().velocity opacity: 1
-
         @$win.trigger "resize"
         @social.exec "fb", "tweet"
         @preload()
+
+        # シェアからのアイテム & 価格指定ジャンプ
+        _search = location.search.replace(/^\?/, '')
+        if _search.match(/item=(.*?)(\&|$)/)
+            _item = _search.match(/item=(.*?)\&/)[1]
+        if _search.match(/price=(.*?)(\&|$)/)
+            _price = _search.match(/price=(.*?)$/)[1]
+
+        _rand = -1
+        for i in [0...@item_data.length]
+            if @item_data[i].name == _item
+                _rand = i
+                break
+
+        if _rand > 0 && !isNaN(_price) && _price > 0
+            @$firstview[1].find(".firstview_input_inner").val _price
+            @showResult _price, _rand
+        else if location.search.match "skip"
+            @introHandler @firstview_step++
+        else
+            @$firstview[0].show().velocity opacity: 1
 
 new Main()
