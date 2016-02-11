@@ -81,8 +81,8 @@ class Social
             FB.ui
                 method: "feed"
                 link: "#{_$social.attr("data-url")}?" +
-                      "item=#{_$social.attr("data-id")}_and_" +
-                      "price=#{_$social.attr("data-price").replace(/,/g, '')}"
+                      "data=#{_$social.attr("data-id")}_" +
+                      "#{_$social.attr("data-price").replace(/,/g, '')}"
                 picture: "#{_$social.attr "data-url"}img/share/#{_$social.attr "data-id"}.png"
                 description: "#{_$social.attr "data-price"}円は、#{_$social.attr "data-name"}" +
                              "で換算すると#{_$social.attr "data-amount"}#{_$social.attr "data-unit"}です。"
@@ -119,8 +119,8 @@ class Social
                    "で換算すると#{_$social.attr "data-amount"}#{_$social.attr "data-unit"}です。"
             _url = "#{_$social.attr "data-url"}share/" +
                    "#{_$social.attr "data-id"}.html?" +
-                   "item=#{_$social.attr "data-id"}_and_" +
-                   "price=#{_$social.attr("data-price").replace(/,/g, '')}"
+                   "data=#{_$social.attr "data-id"}_" +
+                   "#{_$social.attr("data-price").replace(/,/g, '')}"
 
             _href = "http://twitter.com/share?url=#{encodeURIComponent(_url)}&text=#{encodeURIComponent(_txt)}"
 

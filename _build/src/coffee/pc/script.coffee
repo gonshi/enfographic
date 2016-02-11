@@ -276,10 +276,16 @@ class Main
         _search = location.search.replace(/^\?/, '')
         _item = ""
         _price = 0
-        if _search.match(/item=(.*?)(\&|_and_|$)/)
+        if _search.match(/item=(.*?)(\&|$)/)
             _item = _search.match(/item=(.*?)(\&|_and_|$)/)[1]
-        if _search.match(/price=(.*?)(\&|_and_|$)/)
+        if _search.match(/price=(.*?)(\&|$)/)
             _price = _search.match(/price=(.*?)(\&|_and_|$)/)[1]
+
+        if _search.match("data")
+            if _search.match(/data=(.*?)_/)
+                _item = _search.match(/data=(.*?)_/)[1]
+            if _search.match(/_(.*?)$/)
+                _price = _search.match(/_(.*?)$/)[1]
 
         _rand = -1
         for i in [0...@item_data.length]
@@ -287,7 +293,7 @@ class Main
                 _rand = i
                 break
 
-        if _rand > 0 && !isNaN(_price) && _price > 0
+        if _rand >= 0 && !isNaN(_price) && _price > 0
             unless $.browser.desktop
                 @$header_social.hide()
                 @$header.find(".header_ttl").show()
